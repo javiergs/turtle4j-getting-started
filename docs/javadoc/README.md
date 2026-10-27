@@ -1,21 +1,17 @@
 # TURTLE4J API documentation
 
-Versioned generated API documentation lives in `docs/javadoc/<version>/`.
+Generated Javadoc is hosted in this repository, separately from the compiled library published on Maven Central.
 
-For **1.0.0**, run from this repository root:
+## Development documentation
 
-```bash
-bash scripts/generate-javadoc.sh ../api-turtle4j
-```
+The [Update TURTLE4J Javadoc](../../.github/workflows/update-javadoc.yml) GitHub Actions workflow runs daily and can be triggered manually from the **Actions** tab. It checks out `jgs-lab/api-turtle4j` at `main`, builds the HTML Javadoc using Java 21 and Maven, and opens a pull request updating `docs/javadoc/development/`. Review and merge that pull request to publish the changes; no manual generation script is needed.
 
-The command requires a local checkout of the TURTLE4J library source repository and Maven. It generates HTML from the Java source using the Javadoc Maven plugin, then copies the output to `docs/javadoc/1.0.0/`.
+## Versioned release documentation
 
-**The `-javadoc.jar` on Maven Central is intentionally a placeholder** and cannot be used to produce the HTML documentation.
+Published release documentation is kept under `docs/javadoc/<version>/` and must remain immutable. In particular, `docs/javadoc/1.0.0/` will hold the Javadoc for the published **1.0.0** release. The automatic development workflow **does not generate or update this directory**. Its initial HTML content still needs to be generated from the exact 1.0.0 source revision and committed separately.
 
-Commit the generated `docs/javadoc/1.0.0/` files in a follow-up PR. Enable GitHub Pages with **Deploy from a branch**, branch `main`, folder `/docs`, after merging the generated documentation. The public path will then be `/turtle4j-getting-started/javadoc/1.0.0/`.
+The Maven Central `-javadoc.jar` is intentionally a placeholder and does not contain generated HTML.
 
-Do not overwrite the 1.0.0 documentation when publishing future versions.
+## GitHub Pages
 
-## Automatic updates
-
-The `Update TURTLE4J Javadoc` workflow runs daily and on manual dispatch. It proposes changes to `docs/javadoc/development/` through a PR, leaving version 1.0.0 documentation unchanged. Enable Actions permissions to create pull requests in repository settings.
+Once generated HTML has been committed, enable GitHub Pages with **Deploy from a branch**, branch `main`, folder `/docs`. The versioned Javadoc will then be served at `/turtle4j-getting-started/javadoc/1.0.0/` and development Javadoc at `/turtle4j-getting-started/javadoc/development/`.
