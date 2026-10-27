@@ -1,7 +1,7 @@
 # Getting Started with TURTLE4J
 
 ![Java 21+](https://img.shields.io/badge/Java-21%2B-blue)
-![Version 1.0.0](https://img.shields.io/badge/version-1.0.0-green)
+![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-green)
 [![Java Examples CI](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml/badge.svg)](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml)
 
 **TURTLE4J** is a Java library for communicating with ROS 2 robots through a rosbridge WebSocket connection. This repository provides runnable examples, a Docker-based Turtlesim environment, and setup guides for ROS 2 systems such as TurtleBot 4.
@@ -9,7 +9,9 @@
 ![TURTLE4J architecture overview](https://github.com/user-attachments/assets/5a4f43a3-5cac-453b-af49-83aa24428003)
 
 > [!NOTE]
-> **Development status:** TURTLE4J 1.0.0 provides a Java client for communicating with ROS 2 through rosbridge. The Getting Started repository includes runnable Java examples and a Docker environment with ROS 2 Humble and Turtlesim 2D. The examples demonstrate connection, discovery, pose monitoring, and basic motion control. The Docker environment does not simulate a full TurtleBot 4, and successful execution in Turtlesim does not establish compatibility with or validation on physical TurtleBot 4 hardware.
+> **Development status:** TURTLE4J 1.1.0 provides a Java client for communicating with ROS 2 through rosbridge and optional independent MQTT publish/subscribe. The Getting Started repository includes runnable Java examples and a Docker environment with ROS 2 Humble and Turtlesim 2D. The examples demonstrate connection, discovery, pose monitoring, and basic motion control. The Docker environment does not simulate a full TurtleBot 4, and successful execution in Turtlesim does not establish compatibility with or validation on physical TurtleBot 4 hardware.
+
+**New to TURTLE4J?** Follow the [Student Quick Start](docs/student-quick-start.md) for a simulator-first, step-by-step learning path and independent development exercises.
 
 ## Requirements
 
@@ -45,29 +47,30 @@ For a remote robot, `localhost` means the computer running Java, not the robot. 
 
 ### 3. Explore more examples
 
-Ten progressive examples cover connection, discovery, pose monitoring, velocity control, keyboard teleoperation, and feedback-based motion. See the [Java examples guide](docs/examples.md).
+Ten ROS 2 examples cover connection, discovery, pose monitoring, velocity control, keyboard teleoperation, and feedback-based motion. See the [Java examples guide](docs/examples.md). MQTT is introduced separately after the ROS 2 exercises.
 
 **Safety:** The included motion examples target Turtlesim 2D. Do not run them unchanged on a physical TurtleBot 4.
 
 ## Install
 
-TURTLE4J 1.0.0 is published to Maven Central. The examples in this repository already declare:
+TURTLE4J 1.1.0 is published to Maven Central. The examples in this repository already declare:
 
 ```xml
 <dependency>
     <groupId>com.javiergs</groupId>
     <artifactId>turtle4j</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
 ## Documentation
 
+- [Student Quick Start](docs/student-quick-start.md) — simulator-first onboarding and independent experiments
 - [Docker simulator setup](docker/README.md)
 - [ROS 2 and TurtleBot 4 setup](docs/getting-started.md)
 - [Java examples](docs/examples.md)
 - [ROS 2 runtime discovery](docs/ros2-discovery.md)
 - [API overview](docs/api-reference.md)
-- [TURTLE4J 1.0.0 Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.0.0/) — frozen release documentation
+- [TURTLE4J 1.1.0 Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.1.0/) — frozen release documentation
 - [Development Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/development/) — updated through reviewed pull requests
 
