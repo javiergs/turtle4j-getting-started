@@ -25,11 +25,22 @@ jobs:
           cache: maven
           cache-dependency-path: _turtle4j-source/pom.xml
       - name: Generate development Javadoc
+        shell: bash
         run: |
-          mvn -B -ntp -f _turtle4j-source/pom.xml -DskipTests -DreportOutputDirectory="$PWD/_turtle4j-source/target/site" javadoc:javadoc
-          test -f _turtle4j-source/target/site/apidocs/index.html
+          set -euo pipefail
+          cd _turtle4j-source
+          mvn -B -ntp -DskipTests javadoc:javadoc
+          echo "Javadoc output locations:"
+          find target -type f -name index.html -print
+          DOC_INDEX="$(find target -type f -path '*/apidocs/index.html' -print -quit)"
+          if [[ -z "$DOC_INDEX" ]]; then
+            echo "::error::Javadoc index.html not found under source target directory"
+            exit 1
+          fi
+          DOC_DIR="$(dirname "$DOC_INDEX")"
+          cd ..
           mkdir -p docs/javadoc/development
-          rsync -a --delete _turtle4j-source/target/site/apidocs/ docs/javadoc/development/
+          rsync -a --delete "_turtle4j-source/$DOC_DIR/" docs/javadoc/development/
           rm -rf _turtle4j-source
       - uses: peter-evans/create-pull-request@v7
         with:
