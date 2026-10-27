@@ -34,6 +34,6 @@ The Compose configuration binds these ports to localhost:
 
 
 
-## Notes
+## Desktop wallpaper
 
-The original source repository includes a custom PNG desktop wallpaper. The wallpaper is not yet copied into this public repository; the container uses the default LXDE desktop background until that binary asset is transferred. This does not affect ROS 2, Turtlesim, or rosbridge functionality.
+The Docker image uses the included `docker/turtle4j-wallpaper.png` as its LXDE desktop background.
