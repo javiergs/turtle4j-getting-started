@@ -44,3 +44,7 @@ Click the Swing control window and use **↑ / ↓** for forward/backward, **←
 **Safety:** The examples are educational, open-loop velocity programs except `SquarePath`, `MoveDistance`, and `RotateAngle`, which use pose feedback. Sending zero velocity is not a safety guarantee. A disconnected robot may miss stop commands; physical robot teleoperation requires a robot-side command timeout/watchdog and additional safety measures. Do not run these examples unchanged on a physical TurtleBot 4.
 
 See [ROS 2 discovery](ros2-discovery.md) and the [API reference](api-reference.md).
+
+## Advanced helper: raw velocity publishing
+
+[`VelocityCommands.java`](../src/main/java/examples/VelocityCommands.java) is a package-private utility for examples that need to publish `geometry_msgs/msg/Twist` directly through `RosbridgeConnection` to an explicitly chosen topic. It provides `move(connection, topic, linear, angular)` and `stop(connection, topic)`. It is not a runnable `main` class, and the progressive examples above use `TurtleClient` instead. Keep this helper in the examples project rather than the published API.
