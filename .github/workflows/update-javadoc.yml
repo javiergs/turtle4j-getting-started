@@ -29,7 +29,11 @@ jobs:
         run: |
           set -euo pipefail
           cd _turtle4j-source
-          mvn -B -ntp -DskipTests javadoc:javadoc
+          mvn -B -ntp -DskipTests \
+            -Dsubpackages=com.javiergs.turtle4j \
+            -Dexcludes=com.javiergs.turtle4j.examples \
+            -Dbottom='Copyright &#169; 2026 Javier Gonzalez-Sanchez' \
+            javadoc:javadoc
           echo "Javadoc output locations:"
           find target -type f -name index.html -print
           DOC_INDEX="$(find target -type f -path '*/apidocs/index.html' -print -quit)"
