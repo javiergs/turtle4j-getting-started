@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.javiergs.turtle4j"},{"l":"com.javiergs.turtle4j.examples"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.javiergs.turtle4j"}];updateSearchResults();
