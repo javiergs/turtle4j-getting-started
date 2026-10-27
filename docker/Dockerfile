@@ -83,7 +83,6 @@ Terminal=false\n\
 Type=Application\n\
 Categories=Application;' > /root/Desktop/teleop_keyboard.desktop && \
     chmod +x /root/Desktop/teleop_keyboard.desktop
-\n
 
 # Use the existing TURTLE4J wallpaper as the LXDE desktop background.
 COPY turtle4j-wallpaper.png /usr/share/backgrounds/turtle4j-wallpaper.png
