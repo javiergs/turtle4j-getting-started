@@ -26,7 +26,8 @@ jobs:
           cache-dependency-path: _turtle4j-source/pom.xml
       - name: Generate development Javadoc
         run: |
-          mvn -B -ntp -f _turtle4j-source/pom.xml -DskipTests javadoc:javadoc
+          mvn -B -ntp -f _turtle4j-source/pom.xml -DskipTests -DreportOutputDirectory="$PWD/_turtle4j-source/target/site" javadoc:javadoc
+          test -f _turtle4j-source/target/site/apidocs/index.html
           mkdir -p docs/javadoc/development
           rsync -a --delete _turtle4j-source/target/site/apidocs/ docs/javadoc/development/
           rm -rf _turtle4j-source
