@@ -31,16 +31,11 @@ jobs:
           cd _turtle4j-source
           # Pass an explicit set of API source files to Javadoc; Maven's
           # -Dexcludes property is not honored by this plugin goal.
-          mapfile -t API_SOURCES < <(find src/main/java/com/javiergs/turtle4j \\
-            -maxdepth 1 -type f -name '*.java' | sort)
-          if [[ ${#API_SOURCES[@]} -eq 0 ]]; then
-            echo "::error::No TURTLE4J API source files found"
-            exit 1
-          fi
-          mvn -B -ntp -DskipTests \\
-            -DsourceFileIncludes='com/javiergs/turtle4j/*.java' \\
-            -DsourceFileExcludes='**/examples/**' \\
-            -Dbottom='Copyright &#169; 2026 Javier Gonzalez-Sanchez' \\
+          test -f src/main/java/com/javiergs/turtle4j/TurtleClient.java
+          mvn -B -ntp -DskipTests \
+            -DsourceFileIncludes='com/javiergs/turtle4j/*.java' \
+            -DsourceFileExcludes='**/examples/**' \
+            -Dbottom='Copyright &#169; 2026 Javier Gonzalez-Sanchez' \
             javadoc:javadoc
           echo "Javadoc output locations:"
           find target -type f -name index.html -print
