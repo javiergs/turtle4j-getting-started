@@ -29,12 +29,13 @@ jobs:
         run: |
           set -euo pipefail
           cd _turtle4j-source
-          # Pass an explicit set of API source files to Javadoc; Maven's
-          # -Dexcludes property is not honored by this plugin goal.
+          # This is a disposable checkout used only for documentation.
+          # Remove example sources before invoking Javadoc so Maven cannot
+          # discover the examples package regardless of plugin filter behavior.
           test -f src/main/java/com/javiergs/turtle4j/TurtleClient.java
+          rm -rf src/main/java/com/javiergs/turtle4j/examples
+          rm -rf target/site/apidocs
           mvn -B -ntp -DskipTests \
-            -DsourceFileIncludes='com/javiergs/turtle4j/*.java' \
-            -DsourceFileExcludes='**/examples/**' \
             -Dbottom='Copyright &#169; 2026 Javier Gonzalez-Sanchez' \
             javadoc:javadoc
           echo "Javadoc output locations:"
