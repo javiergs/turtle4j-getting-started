@@ -17,12 +17,5 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-      - name: Check out TURTLE4J source
-        uses: actions/checkout@v4
-        with:
-          repository: jgs-lab/api-turtle4j
-          path: turtle4j-source
-      - name: Install current TURTLE4J API locally
-        run: mvn --batch-mode --no-transfer-progress -f turtle4j-source/pom.xml -DskipTests install
       - name: Compile examples
         run: mvn --batch-mode --no-transfer-progress clean compile
