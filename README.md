@@ -3,4 +3,7 @@
 
 ## API documentation
 
-TURTLE4J 1.0.0 Javadoc will be published under [`docs/javadoc/1.0.0/`](docs/javadoc/README.md). See the [generation instructions](docs/javadoc/README.md) for building and committing the versioned HTML documentation.
+- [Development Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/development/) — automatically refreshed through reviewed pull requests.
+- [TURTLE4J 1.0.0 Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.0.0/) — available once the frozen release documentation PR has been generated and merged.
+
+The [documentation maintenance guide](docs/javadoc/README.md) describes both workflows.
