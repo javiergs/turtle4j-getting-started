@@ -1,0 +1,10 @@
+services:
+  turtle4j:
+    build: .
+    ports:
+      - "127.0.0.1:6080:6080" # noVNC
+      - "127.0.0.1:5900:5900" # VNC, no password: localhost only
+      - "127.0.0.1:9090:9090" # rosbridge, unauthenticated: localhost only
+    shm_size: "1gb"
+    environment:
+      DISPLAY: ":1"

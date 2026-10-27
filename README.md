@@ -25,10 +25,20 @@ TURTLE4J connects Java applications to ROS 2 through rosbridge. Choose either a 
 
 ![TURTLE4J overview](https://github.com/user-attachments/assets/5a4f43a3-5cac-453b-af49-83aa24428003)
 
+- [Docker Turtlesim 2D setup](docker/README.md) — ROS 2 Humble, rosbridge and a browser desktop.
 - [Getting started: Docker or physical TurtleBot 4](docs/getting-started.md)
 - [Turtlesim example guide](docs/examples.md)
 - [ROS 2 discovery](docs/ros2-discovery.md)
 - [API overview](docs/api-reference.md)
+
+## Start the local simulator
+
+```bash
+cd docker
+docker compose up --build
+```
+
+Open the [local noVNC desktop](http://localhost:6080/vnc.html), click **Connect**, and launch **Turtlesim 2D**. Java examples connect to `ws://localhost:9090`. This is a 2D test environment, not a TurtleBot 4 simulator.
 
 ## Runnable examples
 
