@@ -8,7 +8,7 @@ The [Update TURTLE4J Javadoc](../../.github/workflows/update-javadoc.yml) GitHub
 
 ## Versioned release documentation
 
-Published release documentation is kept under `docs/javadoc/<version>/` and must remain immutable. In particular, `docs/javadoc/1.0.0/` will hold the Javadoc for the published **1.0.0** release. The automatic development workflow **does not generate or update this directory**. Its initial HTML content still needs to be generated from the exact 1.0.0 source revision and committed separately.
+Published release documentation is kept under `docs/javadoc/<version>/` and must remain immutable. In particular, `docs/javadoc/1.0.0/` will hold the Javadoc for the published **1.0.0** release. The automatic development workflow **does not generate or update this directory**. To create its initial HTML, manually run [Generate TURTLE4J 1.0.0 Javadoc](../../.github/workflows/generate-release-javadoc.yml) and supply the **full 40-character Git commit SHA** that corresponds to the published 1.0.0 artifact. Review and merge the generated PR only after confirming the source revision. The workflow refuses to overwrite an existing 1.0.0 index. The release source currently has no confirmed 1.0.0 tag, so do not substitute `main` without verifying its release identity.
 
 The Maven Central `-javadoc.jar` is intentionally a placeholder and does not contain generated HTML.
 
