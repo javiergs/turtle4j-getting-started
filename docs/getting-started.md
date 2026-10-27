@@ -36,17 +36,19 @@ Import `com.javiergs.turtle4j.TurtleClient`. For a remote robot, `localhost` ref
 
 Runtime capability discovery additionally requires **rosapi** to be running; rosbridge alone is sufficient for raw publish/subscribe. See [ROS 2 discovery](ros2-discovery.md).
 
-## Java requirements and Maven installation
+## Java requirements and Maven setup
 
 - **Java 21 or newer** (the Maven project targets Java 21).
 - **Maven**.
 - A reachable rosbridge WebSocket endpoint.
 
-From the repository root:
+From the repository root, compile the example project:
 
 ```bash
-mvn clean install
+mvn compile
 ```
+
+Maven resolves the published TURTLE4J dependency automatically.
 
 The published Maven Central coordinates are `com.javiergs:turtle4j:1.0.0`. To use the library in another Maven project:
 
@@ -58,12 +60,18 @@ The published Maven Central coordinates are `com.javiergs:turtle4j:1.0.0`. To us
 </dependency>
 ```
 
-## Developer tests
+## Run a Java example
 
-Library unit and integration tests remain in the private `api-turtle4j` repository. To run examples, first start the Docker environment and launch Turtlesim 2D.
+Start rosbridge using Option A or B above, then run this command from the repository root:
 
 ```bash
-mvn compile && mvn exec:java -Dexec.mainClass=examples.ConnectRobot
+mvn exec:java -Dexec.mainClass=examples.ConnectRobot
 ```
 
-The integration test uses `ws://localhost:9090` and requires a running Turtlesim node. It sends a short movement command; do not point it at physical hardware without reviewing the test.
+The example uses `ws://localhost:9090` by default. For a different rosbridge host:
+
+```bash
+mvn exec:java -Dexec.mainClass=examples.ConnectRobot -Dexec.args=ws://ROBOT_IP:9090
+```
+
+See the [examples guide](examples.md) for additional programs. The included motion examples target Turtlesim 2D; do not run them unchanged on physical hardware.
