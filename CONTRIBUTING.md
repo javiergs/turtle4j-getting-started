@@ -18,19 +18,6 @@ For research prototypes and robot-specific applications developed by the ROVER t
 
 **Do not submit changes to the private TURTLE4J library implementation here.** If an example reveals a missing library capability, explain the use case and expected behavior in an issue or PR discussion; the maintainers will evaluate potential API changes separately.
 
-## Before starting
-
-1. Read the [Student Quick Start](docs/student-quick-start.md) and [Java examples guide](docs/examples.md).
-2. Install Java 21+, Maven, Git, and Docker.
-3. Start the bundled **Turtlesim 2D** environment as described in [Docker setup](docker/README.md).
-4. From the repository root, verify that the existing examples build:
-
-   ```bash
-   mvn clean verify
-   ```
-
-The Docker environment runs **Turtlesim 2D**, not a full TurtleBot 4 simulator. Do not run simulator movement examples unchanged on physical hardware.
-
 ## Propose a change
 
 You do not need write access to this repository.
