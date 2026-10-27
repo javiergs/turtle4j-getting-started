@@ -1,5 +1,9 @@
 # TURTLE4J Getting Started
 
+![Java 21+](https://img.shields.io/badge/Java-21%2B-blue)
+![Version 1.0.0](https://img.shields.io/badge/version-1.0.0-green)
+[![Java Examples CI](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml/badge.svg)](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml)
+
 **TURTLE4J** is a Java library for communicating with ROS 2 robots through a rosbridge WebSocket connection. This repository provides runnable examples, a Docker-based Turtlesim environment, and setup guides for ROS 2 systems such as TurtleBot 4.
 
 ![TURTLE4J architecture overview](https://github.com/user-attachments/assets/5a4f43a3-5cac-453b-af49-83aa24428003)
