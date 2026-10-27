@@ -2,6 +2,8 @@
 
 The examples progress from connecting to ROS 2 through velocity control and pose-feedback navigation. They use the local **Docker Turtlesim 2D** environment, not a physical TurtleBot 4. See [Docker setup](../docker/README.md).
 
+New students should follow the [Student Quick Start](student-quick-start.md) first.
+
 ## Run an example
 
 Start Docker, open its browser desktop, and launch **Turtlesim 2D**. From the repository root:
@@ -48,3 +50,7 @@ See [ROS 2 discovery](ros2-discovery.md) and the [API reference](api-reference.m
 ## Advanced helper: raw velocity publishing
 
 [`VelocityCommands.java`](../src/main/java/examples/VelocityCommands.java) is a package-private utility for examples that need to publish `geometry_msgs/msg/Twist` directly through `RosbridgeConnection` to an explicitly chosen topic. It provides `move(connection, topic, linear, angular)` and `stop(connection, topic)`. It is not a runnable `main` class, and the progressive examples above use `TurtleClient` instead. Keep this helper in the examples project rather than the published API.
+
+## Optional MQTT example
+
+After completing the ROS 2 examples, see [MQTT publish/subscribe](mqtt-example.md). MQTT in TURTLE4J 1.1.0 is independent of ROSbridge; it does not automatically forward ROS messages.
