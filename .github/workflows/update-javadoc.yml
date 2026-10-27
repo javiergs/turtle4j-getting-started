@@ -1,0 +1,41 @@
+name: Update TURTLE4J Javadoc
+on:
+  schedule:
+    - cron: '17 8 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  javadoc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: jgs-lab/api-turtle4j
+          ref: main
+          path: _turtle4j-source
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: _turtle4j-source/pom.xml
+      - name: Generate development Javadoc
+        run: |
+          mvn -B -ntp -f _turtle4j-source/pom.xml -DskipTests javadoc:javadoc
+          mkdir -p docs/javadoc/development
+          rsync -a --delete _turtle4j-source/target/site/apidocs/ docs/javadoc/development/
+          rm -rf _turtle4j-source
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: refresh TURTLE4J development Javadoc"
+          branch: automation/update-development-javadoc
+          delete-branch: true
+          title: "docs: update TURTLE4J development Javadoc"
+          body: |
+            Automated Javadoc refresh from jgs-lab/api-turtle4j main.
+            Review before merging. Versioned 1.0.0 docs are not overwritten.
+          add-paths: docs/javadoc/development
