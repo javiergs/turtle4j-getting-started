@@ -1,59 +1,74 @@
 # TURTLE4J Getting Started
 
-Runnable examples and setup guides for **TURTLE4J**, a Java 21 client for ROS 2 through rosbridge.
+**TURTLE4J** is a Java library for communicating with ROS 2 robots through a rosbridge WebSocket connection. This repository provides runnable examples, a Docker-based Turtlesim environment, and setup guides for ROS 2 systems such as TurtleBot 4.
 
-## First example: connect to rosbridge
+![TURTLE4J architecture overview](https://github.com/user-attachments/assets/5a4f43a3-5cac-453b-af49-83aa24428003)
 
-Requires Java 21+, Maven, and a running rosbridge server. The default endpoint is `ws://localhost:9090` (the optional Turtlesim Docker environment will be migrated separately).
+## Getting started
 
-```bash
-mvn compile
-mvn exec:java -Dexec.mainClass=examples.ConnectRobot
-```
+### 1. Requirements
 
-To use a different endpoint, pass it as an argument:
+- Java 21 or newer
+- Apache Maven
+- A running ROS 2 system with rosbridge
+- Docker (optional, for the included Turtlesim 2D environment)
 
-```bash
-mvn exec:java -Dexec.mainClass=examples.ConnectRobot -Dexec.args=ws://ROBOT_IP:9090
-```
+### 2. Start Turtlesim 2D (optional)
 
-This project depends on the **published Maven Central artifact** `com.javiergs:turtle4j:1.0.0`; it does not compile the private library's source code. A reachable rosbridge endpoint is still required.
-
-## Environments
-
-TURTLE4J connects Java applications to ROS 2 through rosbridge. Choose either a local **Turtlesim 2D** Docker environment or a **physical TurtleBot 4** running ROS 2. Turtlesim is not a full TurtleBot 4 simulator.
-
-![TURTLE4J overview](https://github.com/user-attachments/assets/5a4f43a3-5cac-453b-af49-83aa24428003)
-
-- [Docker Turtlesim 2D setup](docker/README.md) — ROS 2 Humble, rosbridge and a browser desktop.
-- [Getting started: Docker or physical TurtleBot 4](docs/getting-started.md)
-- [Turtlesim example guide](docs/examples.md)
-- [ROS 2 discovery](docs/ros2-discovery.md)
-- [API overview](docs/api-reference.md)
-
-## Start the local simulator
+The Docker environment includes ROS 2 Humble, rosbridge, Turtlesim 2D, and a browser-based desktop.
 
 ```bash
 cd docker
 docker compose up --build
 ```
 
-Open the [local noVNC desktop](http://localhost:6080/vnc.html), click **Connect**, and launch **Turtlesim 2D**. Java examples connect to `ws://localhost:9090`. This is a 2D test environment, not a TurtleBot 4 simulator.
+Open [the local desktop](http://localhost:6080/vnc.html), click **Connect**, and launch **Turtlesim 2D**. The rosbridge WebSocket endpoint is `ws://localhost:9090`.
 
-## Runnable examples
+See the [Docker setup guide](docker/README.md) for details. Turtlesim 2D is **not** a full TurtleBot 4 simulator.
 
-The project includes ten progressive examples, from connection and discovery to velocity control, pose feedback, and keyboard teleoperation. Each uses the published Maven Central library, not the private source tree.
+### 3. Run your first Java example
+
+From the **repository root**, with rosbridge running:
 
 ```bash
 mvn compile
-mvn exec:java -Dexec.mainClass=examples.DiscoverRobot
+mvn exec:java -Dexec.mainClass=examples.ConnectRobot
 ```
 
-The motion examples target Turtlesim 2D and **must not be run unchanged on a physical TurtleBot 4**. See the [example guide](docs/examples.md) for details.
+The example connects to rosbridge and prints the discovery status. To connect to a different ROS 2 system, supply the reachable rosbridge host:
 
-## API documentation
+```bash
+mvn exec:java -Dexec.mainClass=examples.ConnectRobot -Dexec.args=ws://ROBOT_IP:9090
+```
 
-- [TURTLE4J 1.0.0 Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.0.0/) — frozen release reference.
-- [Development Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/development/) — automatically refreshed through reviewed pull requests.
+For a remote robot, `localhost` means the computer running Java, not the robot. See the [physical TurtleBot 4 setup instructions](docs/getting-started.md).
 
-See the [documentation maintenance guide](docs/javadoc/README.md) for details.
+### 4. Explore more examples
+
+Ten progressive examples cover connection, discovery, pose monitoring, velocity control, keyboard teleoperation, and feedback-based motion. See the [Java examples guide](docs/examples.md).
+
+**Safety:** The included motion examples target Turtlesim 2D. Do not run them unchanged on a physical TurtleBot 4.
+
+## Maven dependency
+
+TURTLE4J 1.0.0 is published to Maven Central. The examples in this repository already declare:
+
+```xml
+<dependency>
+    <groupId>com.javiergs</groupId>
+    <artifactId>turtle4j</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+## Documentation
+
+- [Docker simulator setup](docker/README.md)
+- [ROS 2 and TurtleBot 4 setup](docs/getting-started.md)
+- [Java examples](docs/examples.md)
+- [ROS 2 runtime discovery](docs/ros2-discovery.md)
+- [API overview](docs/api-reference.md)
+- [TURTLE4J 1.0.0 Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.0.0/) — frozen release documentation
+- [Development Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/development/) — updated through reviewed pull requests
+
+The [Javadoc maintenance guide](docs/javadoc/README.md) explains the documentation workflows.
