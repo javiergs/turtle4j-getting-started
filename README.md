@@ -10,21 +10,15 @@
 
 - Java 21 or newer
 - Apache Maven
-- A running ROS 2 system with rosbridge
-- Docker (optional, for the included Turtlesim 2D environment)
+- A ROS 2 system accessible through rosbridge (choose Option A or B below).
 
-### 2. Start Turtlesim 2D (optional)
+### 2. Choose your ROS 2 environment
 
-The Docker environment includes ROS 2 Humble, rosbridge, Turtlesim 2D, and a browser-based desktop.
+**Option A — Turtlesim 2D in Docker:** Run the included ROS 2 Humble, rosbridge, and Turtlesim desktop locally without a physical robot. Connect to `ws://localhost:9090`. [Setup instructions](docs/getting-started.md#option-a-turtlesim-in-docker).
 
-```bash
-cd docker
-docker compose up --build
-```
+**Option B — Physical TurtleBot 4:** Connect through a reachable ROS 2 computer running rosbridge. Use `ws://<ROSBRIDGE_HOST_IP>:9090`. [Setup instructions](docs/getting-started.md#option-b-physical-turtlebot-4).
 
-Open [the local desktop](http://localhost:6080/vnc.html), click **Connect**, and launch **Turtlesim 2D**. The rosbridge WebSocket endpoint is `ws://localhost:9090`.
-
-See the [Docker setup guide](docker/README.md) for details. Turtlesim 2D is **not** a full TurtleBot 4 simulator.
+Both options use the same Java API. For the complete configuration steps, see the **[Getting Started guide](docs/getting-started.md)**.
 
 ### 3. Run your first Java example
 
