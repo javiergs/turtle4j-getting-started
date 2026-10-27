@@ -15,3 +15,7 @@ The command requires a local checkout of the TURTLE4J library source repository 
 Commit the generated `docs/javadoc/1.0.0/` files in a follow-up PR. Enable GitHub Pages with **Deploy from a branch**, branch `main`, folder `/docs`, after merging the generated documentation. The public path will then be `/turtle4j-getting-started/javadoc/1.0.0/`.
 
 Do not overwrite the 1.0.0 documentation when publishing future versions.
+
+## Automatic updates
+
+The `Update TURTLE4J Javadoc` workflow runs daily and on manual dispatch. It proposes changes to `docs/javadoc/development/` through a PR, leaving version 1.0.0 documentation unchanged. Enable Actions permissions to create pull requests in repository settings.
