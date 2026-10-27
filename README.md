@@ -8,6 +8,9 @@
 
 ![TURTLE4J architecture overview](https://github.com/user-attachments/assets/5a4f43a3-5cac-453b-af49-83aa24428003)
 
+[!NOTE]
+Development status: TURTLE4J 1.0.0 provides a Java client for communicating with ROS 2 through rosbridge. The Getting Started repository includes runnable Java examples and a Docker environment with ROS 2 Humble and Turtlesim 2D. The examples demonstrate connection, discovery, pose monitoring, and basic motion control. The Docker environment does not simulate a full TurtleBot 4, and successful execution in Turtlesim does not establish compatibility with or validation on physical TurtleBot 4 hardware.
+
 ## Getting started
 
 ### 1. Requirements
