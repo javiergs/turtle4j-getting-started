@@ -84,3 +84,8 @@ Type=Application\n\
 Categories=Application;' > /root/Desktop/teleop_keyboard.desktop && \
     chmod +x /root/Desktop/teleop_keyboard.desktop
 \n
+# Set the TURTLE4J desktop wallpaper.
+COPY turtle4j-wallpaper.png /usr/share/backgrounds/turtle4j-wallpaper.png
+RUN mkdir -p /root/.config/pcmanfm/LXDE && \
+    printf '[*]\nwallpaper_mode=stretch\nwallpaper=/usr/share/backgrounds/turtle4j-wallpaper.png\ndesktop_fg=#000000\n' \
+    > /root/.config/pcmanfm/LXDE/desktop-items-0.conf
