@@ -65,4 +65,3 @@ TURTLE4J 1.0.0 is published to Maven Central. The examples in this repository al
 - [TURTLE4J 1.0.0 Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.0.0/) — frozen release documentation
 - [Development Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/development/) — updated through reviewed pull requests
 
-The [Javadoc maintenance guide](docs/javadoc/README.md) explains the documentation workflows.
