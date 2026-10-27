@@ -1,5 +1,7 @@
 # Getting started
 
+For a guided first-time learning sequence, see the [Student Quick Start](student-quick-start.md).
+
 TURTLE4J is a Java client for an existing ROS 2 rosbridge WebSocket server. Choose one of two environments below. Both use the same Java API.
 
 ## Option A: Turtlesim in Docker
@@ -50,13 +52,13 @@ mvn compile
 
 Maven resolves the published TURTLE4J dependency automatically.
 
-The published Maven Central coordinates are `com.javiergs:turtle4j:1.0.0`. To use the library in another Maven project:
+The published Maven Central coordinates are `com.javiergs:turtle4j:1.1.0`. To use the library in another Maven project:
 
 ```xml
 <dependency>
     <groupId>com.javiergs</groupId>
     <artifactId>turtle4j</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
