@@ -1,0 +1,45 @@
+name: Example bug report
+description: Report a problem running an example or following instructions
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for reporting a problem. Never share passwords, API keys, tokens, or private device information."
+  - type: input
+    id: example
+    attributes:
+      label: Example or documentation page
+      placeholder: "Example name or relative path"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: "Describe what you did, including relevant commands."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: "Include sanitized error messages if useful."
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: "Operating system, Java version, and Maven version"
+  - type: textarea
+    id: setup
+    attributes:
+      label: Hardware, simulator, or service setup (if relevant)
+      description: "Do not include credentials or private addresses."

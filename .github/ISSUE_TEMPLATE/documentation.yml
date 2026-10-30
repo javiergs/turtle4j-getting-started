@@ -1,0 +1,23 @@
+name: Documentation improvement
+description: Suggest a clarification or improvement to a guide or example
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page or example
+      placeholder: "README section or file path"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is unclear or missing?
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+      description: "Explain what would make this easier for a new student or developer."
