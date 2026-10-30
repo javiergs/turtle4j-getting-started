@@ -1,5 +1,7 @@
 # Getting Started with TURTLE4J
 
+[Contributing](CONTRIBUTING.md) · [Code of Conduct](CODE_OF_CONDUCT.md) · [Accessibility](ACCESSIBILITY.md)
+
 ![Java 21+](https://img.shields.io/badge/Java-21%2B-blue)
 ![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-green)
 [![Java Examples CI](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml/badge.svg)](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml)
