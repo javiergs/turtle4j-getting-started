@@ -53,3 +53,5 @@ See [ROS 2 discovery](ros2-discovery.md) and the [API reference](api-reference.m
 ## Optional MQTT example
 
 After completing the ROS 2 examples, see [MQTT publish/subscribe](mqtt-example.md). MQTT in TURTLE4J 1.1.0 is independent of ROSbridge; it does not automatically forward ROS messages.
+
+For an application-level MQTT → ROS 2 demonstration using the existing Turtle4J API, see [MQTT to ROS 2 teleoperation](mqtt-ros-teleop.md). It uses a local broker and Turtlesim only; MQTT does not automatically bridge to ROS 2.
