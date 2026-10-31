@@ -1,6 +1,5 @@
 # Getting Started with TURTLE4J
 
-
 ![Java 21+](https://img.shields.io/badge/Java-21%2B-blue)
 ![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-green)
 [![Java Examples CI](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml/badge.svg)](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml)
@@ -74,7 +73,6 @@ TURTLE4J 1.1.0 is published to Maven Central. The examples in this repository al
 - [API overview](docs/api-reference.md)
 - [TURTLE4J 1.1.0 Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.1.0/) — frozen release documentation
 - [Development Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/development/) — updated through reviewed pull requests
-
 
 ## Contributing
 
