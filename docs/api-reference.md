@@ -1,6 +1,6 @@
 # API reference
 
-This is a concise guide to the current Java API. The published TURTLE4J 1.0.0 Javadoc is the authoritative public API reference.
+This is a concise guide to the current Java API. The [published TURTLE4J 1.1.0 Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.1.0/) is the authoritative public API reference.
 
 ## TurtleClient
 
