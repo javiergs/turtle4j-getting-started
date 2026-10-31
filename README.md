@@ -1,24 +1,22 @@
-# Getting Started with TURTLE4J
+# Getting Started with Turtle4J
 
 ![Java 21+](https://img.shields.io/badge/Java-21%2B-blue)
 ![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-green)
 [![Java Examples CI](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml/badge.svg)](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml)
 
-**TURTLE4J** is a Java library for communicating with ROS 2 robots through a rosbridge WebSocket connection. This repository provides runnable examples, a Docker-based Turtlesim environment, and setup guides for ROS 2 systems such as TurtleBot 4.
+**Turtle4J** is a Java library for communicating with ROS 2 through rosbridge WebSockets. Use this repository to learn topic discovery, subscriptions, and publishing with runnable Java examples and a Docker-based Turtlesim environment.
 
 ![TURTLE4J architecture overview](https://github.com/user-attachments/assets/5a4f43a3-5cac-453b-af49-83aa24428003)
 
 > [!NOTE]
 > **Development status:** TURTLE4J 1.1.0 provides a Java client for communicating with ROS 2 through rosbridge and optional independent MQTT publish/subscribe. The Getting Started repository includes runnable Java examples and a Docker environment with ROS 2 Humble and Turtlesim 2D. The examples demonstrate connection, discovery, pose monitoring, and basic motion control. The Docker environment does not simulate a full TurtleBot 4, and successful execution in Turtlesim does not establish compatibility with or validation on physical TurtleBot 4 hardware.
 
-**New to TURTLE4J?** Follow the [Student Quick Start](docs/student-quick-start.md) for a simulator-first, step-by-step learning path and independent development exercises.
-
 ## Requirements
 
 - **Java 21+** and Maven
 - A ROS 2 system accessible through rosbridge (choose Option A or B below)
 
-## Getting started
+## Quick start
 
 ### 1. Choose your ROS 2 environment
 
@@ -49,9 +47,7 @@ For a remote robot, `localhost` means the computer running Java, not the robot. 
 
 Ten ROS 2 examples cover connection, discovery, pose monitoring, velocity control, keyboard teleoperation, and feedback-based motion. See the [Java examples guide](docs/examples.md). MQTT is introduced separately after the ROS 2 exercises.
 
-**Safety:** The included motion examples target Turtlesim 2D. Do not run them unchanged on a physical TurtleBot 4.
-
-## Install
+## Install with Maven
 
 TURTLE4J 1.1.0 is published to Maven Central. The examples in this repository already declare:
 
@@ -63,17 +59,30 @@ TURTLE4J 1.1.0 is published to Maven Central. The examples in this repository al
 </dependency>
 ```
 
-## Documentation
+## Examples
+
+Ten ROS 2 examples cover connection, discovery, pose monitoring, velocity control, keyboard teleoperation, and feedback-based motion. See the [Java examples guide](docs/examples.md). MQTT examples are introduced separately after the ROS 2 exercises.
+
+## API documentation
+
+- [Turtle4J 1.1.0 JavaDoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.1.0/) — published release
+- [Development JavaDoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/development/) — evolving API documentation
+
+## Additional guides
 
 - [Student Quick Start](docs/student-quick-start.md) — simulator-first onboarding and independent experiments
 - [Docker simulator setup](docker/README.md)
 - [ROS 2 and TurtleBot 4 setup](docs/getting-started.md)
-- [Java examples](docs/examples.md)
 - [ROS 2 runtime discovery](docs/ros2-discovery.md)
 - [API overview](docs/api-reference.md)
-- [TURTLE4J 1.1.0 Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.1.0/) — frozen release documentation
-- [Development Javadoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/development/) — updated through reviewed pull requests
 
-## Contributing
+## Troubleshooting
 
-Contributions to examples, tutorials, and documentation are welcome through pull requests. See [CONTRIBUTING.md](CONTRIBUTING.md) for the fork-and-PR workflow, testing expectations, and required maintainer review. The TURTLE4J library source remains private.
+- **Connection refused:** Confirm the ROS 2 system and rosbridge are running and port `9090` is reachable.
+- **Wrong host:** For a remote ROS 2 system, `localhost` refers to the computer running Java, not the robot.
+- **No pose or scan messages:** Verify the topic exists and the simulator or robot publishes that topic.
+- **Build failure:** Check `mvn -version` for Java 21 and Maven dependency access.
+
+## Robot safety
+
+Turtlesim is a 2D teaching simulator, not a full TurtleBot 4 simulation. Do not run motion examples unchanged on physical hardware. Follow the [ROS 2 and TurtleBot 4 setup guide](docs/getting-started.md) for hardware-specific precautions.
