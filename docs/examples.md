@@ -27,7 +27,6 @@ Replace `ConnectRobot` with any class name below. The endpoint is `ws://localhos
 | 6 | [CirclePath](../src/main/java/examples/CirclePath.java) | Combine linear and angular velocities | Unambiguous VELOCITY |
 | 7 | [KeyboardControl](../src/main/java/examples/KeyboardControl.java) | Control with arrow keys in a Swing window | Unambiguous VELOCITY; graphical desktop |
 | 8 | [SquarePath](../src/main/java/examples/SquarePath.java) | Use pose feedback to measure sides and turns | Unambiguous VELOCITY and Turtlesim pose |
-
 | 9 | [MoveDistance](../src/main/java/examples/MoveDistance.java) | Move 1 meter using feedback | VELOCITY and Turtlesim pose |
 | 10 | [RotateAngle](../src/main/java/examples/RotateAngle.java) | Rotate 90 degrees using feedback | VELOCITY and Turtlesim pose |
 
