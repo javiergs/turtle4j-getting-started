@@ -2,7 +2,7 @@
 
 ![Java 21+](https://img.shields.io/badge/Java-21%2B-blue)
 ![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-green)
-[![Java Examples CI](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml/badge.svg)](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml)
+[![Java CI](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml/badge.svg)](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml)
 
 **Turtle4J** is a Java library for communicating with ROS 2 through rosbridge WebSockets. Use this repository to learn topic discovery, subscriptions, and publishing with runnable Java examples and a Docker-based Turtlesim environment.
 
