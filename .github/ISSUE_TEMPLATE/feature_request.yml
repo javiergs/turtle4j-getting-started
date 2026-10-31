@@ -1,0 +1,42 @@
+name: New example request
+description: Propose a student-friendly example or learning exercise using the published Turtle4J API
+title: "[Example]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: "Suggest examples that can be built using the public Maven dependency. Do not include credentials, private device identifiers, or unpublished library source."
+  - type: input
+    id: goal
+    attributes:
+      label: Learning goal
+      description: What should a student learn from this example? Turtle4J examples for ROS 2 topics, sensors, movement, Turtlesim, or TurtleBot 4.
+      placeholder: "e.g., subscribe to a simulated laser scan topic"
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Proposed example
+      description: Describe the expected behavior, input, and output.
+    validations:
+      required: true
+  - type: textarea
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Device, account, software, permissions, or simulator requirements. Never share secrets.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: How could a student verify it works?
+      description: Provide observable success criteria and possible failure cases.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+      description: Optional links, references, or limitations.
