@@ -1,4 +1,4 @@
-name: Java Examples CI
+name: Java CI
 
 on:
   pull_request:
