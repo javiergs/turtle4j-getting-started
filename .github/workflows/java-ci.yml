@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  compile:
+  verify:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -17,5 +17,5 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-      - name: Compile examples
-        run: mvn --batch-mode --no-transfer-progress clean compile
+      - name: Verify examples
+        run: mvn --batch-mode --no-transfer-progress clean verify
