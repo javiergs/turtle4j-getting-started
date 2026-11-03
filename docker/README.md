@@ -40,7 +40,15 @@ Check that Docker is running:
 docker info
 ```
 
-If `docker info` shows information about your Docker installation without a connection error, continue. You do not need to install Ubuntu or ROS 2 separately.
+**Important: installing Docker is not the same as starting it.** Docker Desktop must be open and its engine must be running **before** you use `docker pull`, `docker run`, or `docker compose`.
+
+If `docker info` shows information about the Docker **Server** without a connection error, Docker is ready. If it says **"failed to connect to the Docker API"**, **"Cannot connect to the Docker daemon"**, or mentions a missing `docker.sock` file, start Docker Desktop and wait until it reports that the engine is running. On macOS, you can start it from Terminal with:
+
+```bash
+open -a Docker
+```
+
+Then try `docker info` again. **Do not continue to Method 1 or Method 2 until this check succeeds.** You do not need to install Ubuntu or ROS 2 separately.
 
 ### B. Get the simulation environment
 
