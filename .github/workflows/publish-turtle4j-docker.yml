@@ -12,14 +12,26 @@ permissions:
   contents: read
   packages: write
 
+env:
+  REGISTRY_IMAGE: ghcr.io/javiergs/turtle4j-ros2
+
 jobs:
-  publish:
-    runs-on: ubuntu-latest
+  build:
+    name: Build ${{ matrix.platform }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux/amd64
+            runner: ubuntu-24.04
+            artifact: amd64
+          - platform: linux/arm64
+            runner: ubuntu-24.04-arm
+            artifact: arm64
+    runs-on: ${{ matrix.runner }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Sign in to GitHub Container Registry
@@ -28,11 +40,58 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and publish image
+      - name: Build and push architecture-specific image
+        id: build
         uses: docker/build-push-action@v6
         with:
           context: ./docker
           file: ./docker/Dockerfile
+          platforms: ${{ matrix.platform }}
           push: true
-          platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/javiergs/turtle4j-ros2:latest
+          outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true
+          cache-from: type=gha,scope=${{ matrix.artifact }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.artifact }}
+      - name: Save image digest
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          mkdir -p "${{ runner.temp }}/digests"
+          touch "${{ runner.temp }}/digests/${DIGEST#sha256:}"
+      - name: Upload image digest
+        uses: actions/upload-artifact@v4
+        with:
+          name: digests-${{ matrix.artifact }}
+          path: ${{ runner.temp }}/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  publish:
+    name: Publish multi-architecture image
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Download architecture digests
+        uses: actions/download-artifact@v4
+        with:
+          path: ${{ runner.temp }}/digests
+          pattern: digests-*
+          merge-multiple: true
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Sign in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Assemble and publish latest manifest
+        working-directory: ${{ runner.temp }}/digests
+        run: |
+          set -euo pipefail
+          sources=()
+          for digest in *; do
+            sources+=("${REGISTRY_IMAGE}@sha256:${digest}")
+          done
+          test "${#sources[@]}" -eq 2
+          docker buildx imagetools create -t "${REGISTRY_IMAGE}:latest" "${sources[@]}"
+          docker buildx imagetools inspect "${REGISTRY_IMAGE}:latest"
