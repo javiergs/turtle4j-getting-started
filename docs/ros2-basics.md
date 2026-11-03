@@ -43,7 +43,10 @@ ros2 topic echo /turtle1/pose
 Return to the **first terminal** and enter:
 
 ```bash
-ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist '{linear: {x: 2.0}, angular: {z: 0.0}}'
+ros2 topic pub --once \
+  /turtle1/cmd_vel \
+  geometry_msgs/msg/Twist \
+  '{linear: {x: 2.0}, angular: {z: 0.0}}'
 ```
 
 **Notice:** The turtle should move forward briefly, and the pose values in the second terminal should change. The command sends **one** velocity message, so movement may be small.
@@ -51,7 +54,10 @@ ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist '{linear: {x: 2.0
 Now try turning:
 
 ```bash
-ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist '{linear: {x: 0.0}, angular: {z: 2.0}}'
+ros2 topic pub --once \
+  /turtle1/cmd_vel \
+  geometry_msgs/msg/Twist \
+  '{linear: {x: 0.0}, angular: {z: 2.0}}'
 ```
 
 **Notice:** The turtle should rotate briefly. `linear.x` specifies forward speed; `angular.z` specifies turning speed. These are velocities, **not** target positions.
@@ -59,7 +65,10 @@ ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist '{linear: {x: 0.0
 To observe more obvious continuous movement, you can publish repeatedly:
 
 ```bash
-ros2 topic pub --rate 2 /turtle1/cmd_vel geometry_msgs/msg/Twist '{linear: {x: 1.0}, angular: {z: 0.0}}'
+ros2 topic pub --rate 2 \
+  /turtle1/cmd_vel \
+  geometry_msgs/msg/Twist \
+  '{linear: {x: 1.0}, angular: {z: 0.0}}'
 ```
 
 Watch the turtle and pose values, then press **Ctrl+C** in the first terminal to stop publishing. The turtle may continue briefly until the simulator stops applying the last velocity command.
@@ -90,12 +99,5 @@ Keyboard → teleop_twist_keyboard → /turtle1/cmd_vel → Turtlesim
 Terminal → ros2 topic pub      → /turtle1/cmd_vel → Turtlesim
 ```
 
-Both approaches control the same turtle through the same ROS 2 topic. Next, you will send commands from Java instead.
+Both approaches control the same turtle through the same ROS 2 topic.
 
-## Next: Getting Started with Turtle4J
-
-Continue with the [Java Getting Started guide](getting-started.md). Keep Docker and Turtlesim running. Your Java application connects through rosbridge at `ws://localhost:9090`:
-
-```text
-Java application → Turtle4J → rosbridge → ROS 2 → Turtlesim
-```
