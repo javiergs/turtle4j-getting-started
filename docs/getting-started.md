@@ -2,7 +2,7 @@
 
 This guide shows how to compile and run the Java examples after a ROS 2 environment is ready. If you have not configured an environment yet, choose [Turtlesim in Docker](../docker/README.md) for local practice or [physical TurtleBot 4 setup](turtlebot4-setup.md) for hardware.
 
-For a longer learning sequence, see the [Student Quick Start](student-quick-start.md).
+If you are new to ROS 2, first complete [Understanding ROS 2](ros2-basics.md).
 
 ## Requirements
 
