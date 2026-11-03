@@ -4,12 +4,11 @@
 ![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-green)
 [![Java CI](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml/badge.svg)](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml)
 
-**Turtle4J** is a Java library for communicating with ROS 2 through rosbridge WebSockets. Use this repository to learn topic discovery, subscriptions, and publishing with runnable Java examples and a Docker-based Turtlesim environment.
+**Turtle4J** is a Java library for communicating with ROS 2 through rosbridge WebSockets. This repository provides runnable Java examples and a Docker-based environment with ROS 2 Humble and Turtlesim 2D for learning topic discovery, publishing, subscribing, and basic robot motion control. Turtle4J also supports independent MQTT communication.
+
+The included Turtlesim environment is intended for learning and experimentation, not as a full TurtleBot 4 simulator.
 
 <img width="80%" alt="685696458-5a4f43a3-5cac-453b-af49-83aa24428003" src="https://github.com/user-attachments/assets/7ffff468-7847-491a-85df-983a49607bb0" />
-
-> [!NOTE]
-> **Development status:** TURTLE4J 1.1.0 provides a Java client for communicating with ROS 2 through rosbridge and optional independent MQTT publish/subscribe. The Getting Started repository includes runnable Java examples and a Docker environment with ROS 2 Humble and Turtlesim 2D. The examples demonstrate connection, discovery, pose monitoring, and basic motion control. The Docker environment does not simulate a full TurtleBot 4, and successful execution in Turtlesim does not establish compatibility with or validation on physical TurtleBot 4 hardware.
 
 ## 0. Requirements
 
@@ -58,13 +57,10 @@ Ten ROS 2 examples cover connection, discovery, pose monitoring, velocity contro
 
 ## 6. Additional guides
 
-- [Student Quick Start](docs/student-quick-start.md) — simulator-first onboarding and independent experiments
-- [Docker simulator setup](docker/README.md)
-- [Understanding ROS 2: Nodes, Topics, and Messages](docs/ros2-basics.md)
-- [Java Getting Started](docs/getting-started.md)
-- [Physical TurtleBot 4 setup](docs/turtlebot4-setup.md)
-- [ROS 2 runtime discovery](docs/ros2-discovery.md)
-- [API overview](docs/api-reference.md)
+- [Developing New Functionality with Turtle4J](docs/extending-turtle4j.md) — design, implement, and test independent Java experiments.
+- [ROS 2 runtime discovery](docs/ros2-discovery.md) — inspect capabilities and troubleshoot discovery.
+- [API overview](docs/api-reference.md) — learn the library's Java API.
+- [MQTT publish/subscribe](docs/mqtt-example.md) — experiment with independent MQTT messaging.
 
 ## Troubleshooting
 

@@ -2,7 +2,7 @@
 
 The examples progress from connecting to ROS 2 through velocity control and pose-feedback navigation. They use the local **Docker Turtlesim 2D** environment, not a physical TurtleBot 4. See [Docker setup](../docker/README.md).
 
-New students should follow the [Student Quick Start](student-quick-start.md) first.
+New students should complete the [Docker setup](../docker/README.md), [Understanding ROS 2](ros2-basics.md), and [Java Getting Started](getting-started.md) tutorials first.
 
 ## Run an example
 
