@@ -2,9 +2,7 @@
 
 This local test environment bundles **Ubuntu 22.04, ROS 2 Humble, rosbridge, Turtlesim 2D, LXDE/noVNC**. It is a 2D development environment, **not** a Gazebo or TurtleBot 4 physical robot simulator.
 
-<center>
-<img width="70%" alt="docker only" src="https://github.com/user-attachments/assets/75c8e3e9-be42-43b4-a505-51c06997ead0" />
-</center>center
+<center><img width="70%" alt="docker only" src="https://github.com/user-attachments/assets/75c8e3e9-be42-43b4-a505-51c06997ead0" /></center>
 
 ## Start
 
