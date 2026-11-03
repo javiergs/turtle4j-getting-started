@@ -18,9 +18,9 @@ After the simulator is running, continue with [Understanding ROS 2](../docs/ros2
 
 <img width="80%" alt="turtle docker" src="https://github.com/user-attachments/assets/5d739a90-be13-4c90-a975-5be11e8bd5e7" />
 
-## Step 1 — Set up the virtual Linux desktop
+# Step 1 — Set up the virtual Linux desktop
 
-### A. Install Docker
+## A. Install Docker
 
 Docker is the application that runs the simulation environment on your computer.
 
@@ -50,11 +50,11 @@ open -a Docker
 
 Then try `docker info` again. **Do not continue to Method 1 or Method 2 until this check succeeds.** You do not need to install Ubuntu or ROS 2 separately.
 
-### B. Get the simulation environment
+## B. Get the simulation environment
 
 Docker uses an **image** (a package containing the software) to start a **container** (the running environment). You can either download an image someone has already built or build it yourself. **Choose one of the following methods:** Method 1 downloads the published prebuilt image and is the simplest option, Method 2 builds the image on your computer from the provided files.
 
-#### Method 1 — Download the Docker image
+### Method 1 — Download the Docker image
 
 Open Terminal or PowerShell and download the image from GitHub Container Registry:
 
@@ -70,7 +70,7 @@ docker run --rm -it --shm-size=1g -e DISPLAY=:1 -p 127.0.0.1:6080:6080 -p 127.0.
 
 The image is built and published by the repository's GitHub Actions workflow. **If the download reports that the image cannot be found or access is denied**, the publishing workflow may not have completed or the package may not yet be public. In that case, use Method 2. Keep the terminal open while the container runs.
 
-#### Method 2 — Build the image from the provided Dockerfile
+### Method 2 — Build the image from the provided Dockerfile
 
 **1. Download the files.** Open the [repository home page](https://github.com/javiergs/turtle4j-getting-started), click **Code → Download ZIP**, and extract the ZIP file. Open its `docker` folder. You should find `Dockerfile`, `compose.yaml`, `supervisord.conf`, and `turtle4j-wallpaper.png`. Keep these files together.
 
@@ -106,7 +106,7 @@ docker compose up --build
 
 Do **not** run both approaches at the same time; they use the same network ports.
 
-### C. Open the Linux desktop
+## C. Open the Linux desktop
 
 1. On your computer, open a web browser and enter **http://localhost:6080/vnc.html** in its address bar.
 2. Click **Connect**.
@@ -114,13 +114,13 @@ Do **not** run both approaches at the same time; they use the same network ports
 
 `localhost` means your own computer. The Linux desktop is running inside Docker, but you interact with it through your browser.
 
-## Step 2 — Launch Turtlesim 2D
+# Step 2 — Launch Turtlesim 2D
 
 Double-click **Turtlesim 2D** on the Linux desktop. If prompted, select **Run as a terminal application**. A window containing a turtle should appear.
 
 Turtlesim is a simple ROS 2 program: it draws a turtle and moves it in response to commands. No physical robot is needed.
 
-## Next steps
+# Next steps
 
 You now have a running Linux desktop and Turtlesim simulator. **Keep the Docker container and Turtlesim running** while you continue:
 
@@ -129,11 +129,11 @@ You now have a running Linux desktop and Turtlesim simulator. **Keep the Docker 
 
 The browser address `http://localhost:6080/vnc.html` opens the Linux desktop. The WebSocket address `ws://localhost:9090` is for Java-to-ROS communication.
 
-## Stop the environment
+# Stop the environment
 
 Return to the terminal that started Docker and press **Ctrl+C**. If you used the Compose alternative, you can also run `docker compose down` from the `docker` folder. The `--rm` option in the other commands removes the stopped container, but keeps the downloaded or built image.
 
-## Troubleshooting
+# Troubleshooting
 
 - **Docker command not found:** Install Docker, then reopen your terminal.
 - **Cannot connect to Docker:** Start Docker Desktop and wait for it to finish launching.
