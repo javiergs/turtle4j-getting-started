@@ -1,4 +1,3 @@
-attachments/assets/9d9e1766-1728-49d7-8a79-a535448f0270" />
 # Docker Setup for Turtlesim 2D Environment
 
 This tutorial shows you how to:
