@@ -118,6 +118,8 @@ Double-click **Turtlesim 2D** on the Linux desktop. If prompted, select **Run as
 
 Turtlesim is a simple ROS 2 program: it draws a turtle and moves it in response to commands. No physical robot is needed.
 
+**Note:** Turtlesim is a 2D environment for learning and experimentation. It does not simulate a full TurtleBot 4 robot.
+
 ## Next steps
 
 You now have a running Linux desktop and Turtlesim simulator. **Keep the Docker container and Turtlesim running** while you continue:
