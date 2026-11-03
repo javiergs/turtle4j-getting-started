@@ -1,13 +1,6 @@
 # Docker Setup for Turtlesim 2D Environment
 
-What are we installing?
-
-* Docker: Runs the container that hosts the simulation environment.
-* Ubuntu 22.04: Provides the Linux operating system inside the container.
-* ROS 2 Humble: Enables communication between robotics applications.
-* Turtlesim: Simulates a turtle moving in a two-dimensional environment.
-* rosbridge: Connects external applications, such as Turtle4J, to ROS 2.
-* noVNC: Provides access to the Linux desktop through a web browser.
+This tutorial uses Docker to create a virtual Linux desktop running Ubuntu 22.04 and ROS 2 Humble. The environment includes Turtlesim, a simple 2D robot simulator, and rosbridge, which allows external applications such as Turtle4J to communicate with ROS 2 through WebSockets. You can access the Linux desktop directly from your web browser using noVNC.
 
 <img width="80%" alt="turtle docker" src="https://github.com/user-attachments/assets/5d739a90-be13-4c90-a975-5be11e8bd5e7" />
 
