@@ -1,13 +1,6 @@
 # Understanding ROS 2: Nodes, Topics, and Messages
 
-In this tutorial, you will:
-
-1. Discover running ROS 2 nodes and topics.
-2. Observe messages as the turtle moves.
-3. Publish movement commands from the terminal.
-4. Understand how **Keyboard Teleop 2D** works.
-
-## Step 1 — Discover nodes
+## Discover ROS 2 Nodes
 
 Run the following commands in a terminal inside the browser-based Linux desktop, not in your computer's Terminal or PowerShell. Enter:
 
@@ -17,7 +10,7 @@ ros2 node list
 
 **Notice:** You should see `/turtlesim` (other nodes may also appear). A **node** is a running ROS 2 program that participates in communication.
 
-## Step 2 — Discover topics
+## Explore ROS 2 Topics
 
 In the same terminal, enter:
 
@@ -35,7 +28,7 @@ ros2 topic info /turtle1/cmd_vel
 
 **Notice:** Its message type is `geometry_msgs/msg/Twist`. The output also shows publisher and subscriber counts; these can change depending on which applications are running.
 
-## Step 3 — Watch messages in real time
+## Observe Messages
 
 Open a **second terminal** inside the Linux desktop. Enter:
 
@@ -45,7 +38,7 @@ ros2 topic echo /turtle1/pose
 
 **Notice:** You should see changing fields such as `x`, `y`, and `theta` (orientation), even while the turtle is stationary. Keep this terminal open.
 
-## Step 4 — Publish movement commands
+## Publish Movement Commands
 
 Return to the **first terminal** and enter:
 
@@ -71,11 +64,11 @@ ros2 topic pub --rate 2 /turtle1/cmd_vel geometry_msgs/msg/Twist '{linear: {x: 1
 
 Watch the turtle and pose values, then press **Ctrl+C** in the first terminal to stop publishing. The turtle may continue briefly until the simulator stops applying the last velocity command.
 
-## Step 5 — Understand Keyboard Teleop 2D
+## Control the Turtle with the Keyboard
 
 **Keyboard Teleop 2D is not Turtle4J.** It is a desktop shortcut that launches the existing ROS 2 program `teleop_twist_keyboard`. The shortcut itself is a text configuration file (`.desktop`); it is not a separate simulator.
 
-You can run the same program yourself. Stop any continuous publisher from Step 4, then enter in the first terminal:
+You can run the same program yourself. Stop any continuous publisher from the previous section, then enter in the first terminal:
 
 ```bash
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/turtle1/cmd_vel
@@ -85,7 +78,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/tu
 
 The `-r /cmd_vel:=/turtle1/cmd_vel` option redirects the program's velocity messages to the topic that Turtlesim listens to. If the desktop shortcut opens as text rather than launching, using the command above works without the shortcut.
 
-## What did you learn?
+## What Did You Learn?
 
 - A **node** is a running ROS 2 program, such as `/turtlesim`.
 - A **topic** is a named channel, such as `/turtle1/cmd_vel`.
@@ -99,7 +92,7 @@ Terminal → ros2 topic pub      → /turtle1/cmd_vel → Turtlesim
 
 Both approaches control the same turtle through the same ROS 2 topic. Next, you will send commands from Java instead.
 
-## Next step — Getting Started with Turtle4J
+## Next: Getting Started with Turtle4J
 
 Continue with the [Java Getting Started guide](getting-started.md). Keep Docker and Turtlesim running. Your Java application connects through rosbridge at `ws://localhost:9090`:
 
