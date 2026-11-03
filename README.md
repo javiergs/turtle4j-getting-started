@@ -4,7 +4,7 @@
 ![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-green)
 [![Java CI](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml/badge.svg)](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml)
 
-**Turtle4J** is a Java library for communicating with ROS 2 through rosbridge WebSockets and MQTT communication. 
+Turtle4J is a Java library for communicating with ROS 2 systems, including TurtleBot 4 robots, through rosbridge WebSockets and MQTT messaging.
 
 <img width="80%" alt="685696458-5a4f43a3-5cac-453b-af49-83aa24428003" src="https://github.com/user-attachments/assets/7ffff468-7847-491a-85df-983a49607bb0" />
 
