@@ -1,16 +1,40 @@
 # TurtleBridge — MQTT ↔ ROS 2 without writing Java
 
-> **Release preparation:** TurtleBridge installers are **not published yet**. This guide is a preview for students and will be finalized after clean-machine installation tests. Do not attempt to download an installer until a release is announced.
+> **Available now:** The TurtleBridge Docker image is published. Native desktop installers are not yet available; use the Docker instructions below.
 
-TurtleBridge is a separate desktop application that connects an MQTT broker to ROS 2 through rosbridge. Unlike the Turtle4J Java examples, TurtleBridge does **not** require you to install Java, Maven, or the private source code. It is designed for learning with **Turtlesim**, not for controlling physical robots.
+TurtleBridge is a separate application that connects an MQTT broker to ROS 2 through rosbridge. Unlike the Turtle4J Java examples, TurtleBridge does **not** require you to install Java, Maven, or the private source code. It is designed for learning with **Turtlesim**, not for controlling physical robots.
 
-## 1. Start the ROS 2 simulator
+## 1. Use TurtleBridge in Docker (recommended for beginners)
 
-Follow the [Docker tutorial](../docker/README.md) to start the ROS 2 environment. Keep the Docker container running, open its desktop in your browser, and launch **Turtlesim 2D**.
+The published Docker image includes the [ROS 2 Turtlesim Desktop](../docker/README.md) plus TurtleBridge. You do not need to install Java, Maven, or a separate TurtleBridge executable.
 
-TurtleBridge expects rosbridge at `ws://localhost:9090`. The Docker tutorial exposes this port to your computer.
+First, [install and start Docker](../docker/README.md#step-1--install-and-start-docker). Then, in Terminal or PowerShell, download the image:
 
-## 2. Install TurtleBridge (after release)
+```bash
+docker pull ghcr.io/jgs-lab/turtlebridge-ros2-simulator:latest
+```
+
+**macOS/Linux:**
+
+```bash
+docker run --rm -it --shm-size=1g -e DISPLAY=:1 \
+  -p 127.0.0.1:6080:6080 -p 127.0.0.1:9090:9090 \
+  ghcr.io/jgs-lab/turtlebridge-ros2-simulator:latest
+```
+
+**Windows PowerShell:**
+
+```powershell
+docker run --rm -it --shm-size=1g -e DISPLAY=:1 `
+  -p 127.0.0.1:6080:6080 -p 127.0.0.1:9090:9090 `
+  ghcr.io/jgs-lab/turtlebridge-ros2-simulator:latest
+```
+
+Next, [open the Linux desktop and launch Turtlesim](../docker/README.md#step-3--open-the-linux-desktop). TurtleBridge starts automatically in this image. Its configuration is stored inside the container at `/root/.turtlebridge/config.json`; the MQTT prefix is randomly generated for each new container. To inspect it, open another terminal and run `docker ps`, then `docker exec <container-id> cat /root/.turtlebridge/config.json`.
+
+**Important:** The separate desktop installers below are not yet verified releases. Use the Docker image for the current student tutorial.
+
+## 2. Native TurtleBridge installers (planned)
 
 Installers will be provided on the public [GitHub Releases page](https://github.com/javiergs/turtle4j-getting-started/releases). **There are no TurtleBridge installers available here yet.** Do not download installers from unofficial sources.
 
@@ -25,7 +49,7 @@ Each installer bundles the Java runtime used by TurtleBridge. Windows ARM64, Lin
 
 **Security notices:** Initial unsigned or unnotarized builds may trigger macOS Gatekeeper or Windows SmartScreen warnings. Do not disable system-wide security protections or bypass warnings for an unverified installer. Ask your instructor for a verified release and installation guidance.
 
-## 3. First-run configuration
+## 3. Native application configuration (planned)
 
 TurtleBridge creates a configuration file when started without arguments:
 

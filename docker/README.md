@@ -1,4 +1,4 @@
-# Docker Setup for Turtlesim 2D Environment
+# ROS 2 Turtlesim Desktop — Docker Setup
 
 This tutorial uses Docker to create a virtual Linux desktop running Ubuntu 22.04 and ROS 2 Humble. The environment includes Turtlesim, a simple 2D robot simulator, and rosbridge, which allows external applications such as Turtle4J to communicate with ROS 2 through WebSockets. You can access the Linux desktop directly from your web browser using noVNC.
 
@@ -83,7 +83,7 @@ Docker uses an **image** (a package containing the software) to start a **contai
 Open Terminal or PowerShell and download the image from GitHub Container Registry:
 
 ```bash
-docker pull ghcr.io/javiergs/turtle4j-ros2:latest
+docker pull ghcr.io/javiergs/ros2-turtlesim-desktop:latest
 ```
 
 Then start the container:
@@ -96,7 +96,7 @@ docker run --rm -it \
   -e DISPLAY=:1 \
   -p 127.0.0.1:6080:6080 \
   -p 127.0.0.1:9090:9090 \
-  ghcr.io/javiergs/turtle4j-ros2:latest
+  ghcr.io/javiergs/ros2-turtlesim-desktop:latest
 ```
 
 **Windows (PowerShell):**
@@ -107,7 +107,7 @@ docker run --rm -it `
   -e DISPLAY=:1 `
   -p 127.0.0.1:6080:6080 `
   -p 127.0.0.1:9090:9090 `
-  ghcr.io/javiergs/turtle4j-ros2:latest
+  ghcr.io/javiergs/ros2-turtlesim-desktop:latest
 ```
 
 The image is built and published by the repository's GitHub Actions workflow. **If the download reports that the image cannot be found or access is denied**, the publishing workflow may not have completed or the package may not yet be public. In that case, use Method 2. Keep the terminal open while the container runs.
@@ -121,7 +121,7 @@ The image is built and published by the repository's GitHub Actions workflow. **
 **3. Build the image.** In that terminal, run:
 
 ```bash
-docker build -t turtle4j-ros2:local .
+docker build -t ros2-turtlesim-desktop:local .
 ```
 
 The final `.` means “use the Dockerfile in the current folder.” Docker downloads and installs the required software. The first build may take several minutes or longer.
@@ -136,7 +136,7 @@ docker run --rm -it \
   -e DISPLAY=:1 \
   -p 127.0.0.1:6080:6080 \
   -p 127.0.0.1:9090:9090 \
-  turtle4j-ros2:local
+  ros2-turtlesim-desktop:local
 ```
 
 **Windows (PowerShell):**
@@ -147,7 +147,7 @@ docker run --rm -it `
   -e DISPLAY=:1 `
   -p 127.0.0.1:6080:6080 `
   -p 127.0.0.1:9090:9090 `
-  turtle4j-ros2:local
+  ros2-turtlesim-desktop:local
 ```
 
 Keep this terminal open while using the environment.
@@ -177,6 +177,9 @@ Turtlesim is a simple ROS 2 program: it draws a turtle and moves it in response 
 **Note:** Turtlesim is a 2D environment for learning and experimentation. It does not simulate a full TurtleBot 4 robot.
 
 ## Next steps
+
+To use MQTT instead of writing a Java application, see the [TurtleBridge simulator guide](../docs/turtlebridge.md). Its Docker image extends this desktop environment with a preinstalled MQTT ↔ ROS 2 bridge.
+
 
 You now have a running Linux desktop and Turtlesim simulator. **Keep the Docker container and Turtlesim running** while you continue:
 
