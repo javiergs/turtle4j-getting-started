@@ -1,3 +1,4 @@
+attachments/assets/9d9e1766-1728-49d7-8a79-a535448f0270" />
 # Docker Setup for Turtlesim 2D Environment
 
 This tutorial shows you how to:
@@ -16,7 +17,7 @@ This tutorial shows you how to:
 - **rosbridge** allows external programs, including Java applications using Turtle4J, to communicate with ROS 2.
 - **Browser desktop (noVNC)** lets you interact with the Linux desktop from your regular web browser.
 
-<img width="70%" alt="Linux desktop provided by the Docker environment" src="https://github.com/user-attachments/assets/75c8e3e9-be42-43b4-a505-51c06997ead0" />
+<img width="1024" height="817" alt="turtle docker" src="https://github.com/user-attachments/assets/5d739a90-be13-4c90-a975-5be11e8bd5e7" />
 
 ## Prerequisite: install and start Docker
 
