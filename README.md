@@ -6,8 +6,6 @@
 
 **Turtle4J** is a Java library for communicating with ROS 2 through rosbridge WebSockets and MQTT communication. 
 
-This repository provides runnable Java examples and a Docker-based environment with ROS 2 Humble and Turtlesim 2D for learning topic discovery, publishing, subscribing, and basic robot motion control.
-
 <img width="80%" alt="685696458-5a4f43a3-5cac-453b-af49-83aa24428003" src="https://github.com/user-attachments/assets/7ffff468-7847-491a-85df-983a49607bb0" />
 
 ## 1. Choose your ROS 2 environment
