@@ -9,20 +9,19 @@ This tutorial shows you how to:
 
 # What are we installing?
 
-- **Docker** runs a packaged software environment (a *container*) on your computer.
-- **Ubuntu 22.04** is the Linux operating system inside that container.
-- **ROS 2 Humble** lets robotics programs communicate.
-- **Turtlesim** shows a turtle moving in a two-dimensional window.
-- **rosbridge** allows external programs, including Java applications using Turtle4J, to communicate with ROS 2.
-- **Browser desktop (noVNC)** lets you interact with the Linux desktop from your regular web browser.
+* Docker: Runs the container that hosts the simulation environment.
+* Ubuntu 22.04: Provides the Linux operating system inside the container.
+* ROS 2 Humble: Enables communication between robotics applications.
+* Turtlesim: Simulates a turtle moving in a two-dimensional environment.
+* rosbridge: Connects external applications, such as Turtle4J, to ROS 2.
+* noVNC: Provides access to the Linux desktop through a web browser.
 
 <img width="80%" alt="turtle docker" src="https://github.com/user-attachments/assets/5d739a90-be13-4c90-a975-5be11e8bd5e7" />
 
 ## Prerequisite: install and start Docker
 
 Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) on Windows or macOS, or Docker Engine on Linux. **Start Docker** and wait until it is running. Open Terminal (macOS/Linux) or PowerShell (Windows).
-
-Choose **Method 1** if a prebuilt image is available; otherwise use **Method 2**. These are two ways to start the same Docker environment, not the two ROS 2 environment choices on the main README.
+There are two ways to set up the Docker environment:
 
 ## Method 1 — Download a ready-made image (recommended once published)
 
