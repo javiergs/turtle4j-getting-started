@@ -4,8 +4,8 @@ This tutorial shows you how to:
 
 * Set up a virtual Linux desktop on your computer using Docker.
 * Launch the Turtlesim 2D simulator.
-* Control the turtle using your keyboard.
-* Connect Java applications to ROS 2 using Turtle4J.
+* Control the turtle using ROS 2 command line instructions
+* Connect Java applications to ROS 2 using **Turtle4J**.
 
 # What are we installing?
 
