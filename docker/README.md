@@ -114,7 +114,7 @@ The image is built and published by the repository's GitHub Actions workflow. **
 
 ### Method 2 — Build the image from the provided Dockerfile
 
-**1. Download the files.** Open the [repository home page](https://github.com/javiergs/turtle4j-getting-started), click **Code → Download ZIP**, and extract the ZIP file. Open its `docker` folder. You should find `Dockerfile`, `compose.yaml`, `supervisord.conf`, and `turtle4j-wallpaper.png`. Keep these files together.
+**1. Download the files.** Download `Dockerfile`, `compose.yaml`, `supervisord.conf`, and `turtle4j-wallpaper.png` from this folder. Save all four files in the same directory on your computer.
 
 **2. Open a terminal in the `docker` folder.** For example, if you extracted the ZIP into Downloads on macOS or Linux:
 
