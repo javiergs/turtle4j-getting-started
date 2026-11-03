@@ -1,7 +1,5 @@
 # Understanding ROS 2: Nodes, Topics, and Messages
 
-**Before you begin:** Complete [Docker Setup for Turtlesim](../docker/README.md). Keep the Docker container running, open the Linux desktop at `http://localhost:6080/vnc.html`, and launch **Turtlesim 2D**. All commands on this page run in a terminal **inside the browser-based Linux desktop**, not in your Mac/Windows terminal.
-
 In this tutorial, you will:
 
 1. Discover running ROS 2 nodes and topics.
@@ -11,7 +9,7 @@ In this tutorial, you will:
 
 ## Step 1 — Discover nodes
 
-Open a terminal inside the Linux desktop and enter:
+Run the following commands in a terminal inside the browser-based Linux desktop, not in your computer's Terminal or PowerShell. Enter:
 
 ```bash
 ros2 node list
