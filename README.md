@@ -36,8 +36,6 @@ ws://<ROSBRIDGE_HOST_IP>:9090
 
 If you are new to ROS 2, complete [Understanding ROS 2: Nodes, Topics, and Messages](docs/ros2-basics.md). You will explore nodes and topics, observe turtle position messages, and send movement commands from a terminal.
 
-If you already know ROS 2, you can proceed directly to the Java tutorial.
-
 ## Step 3. Using Turtle4J in your project
 
 To run the Java examples, install **Java 21 or newer** and **Maven** on your computer. You can verify both installations with `java -version` and `mvn -version`. These tools are not required for the Docker and ROS 2 tutorials above.
