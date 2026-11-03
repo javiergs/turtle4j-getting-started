@@ -24,7 +24,7 @@
 
 **Option B — Physical TurtleBot 4:** Connect through a reachable ROS 2 computer running rosbridge. Use `ws://<ROSBRIDGE_HOST_IP>:9090`. [Physical robot setup instructions](docs/turtlebot4-setup.md).
 
-Both options use the same Java API. Once your environment is running, follow the **[Java Getting Started guide](docs/getting-started.md)**.
+Both options use the same Java API. If you are new to ROS 2, first complete **[Understanding ROS 2: Nodes, Topics, and Messages](docs/ros2-basics.md)** with the simulator running. Then follow the **[Java Getting Started guide](docs/getting-started.md)**.
 
 ### 2. Run your first Java example
 
@@ -68,6 +68,7 @@ Ten ROS 2 examples cover connection, discovery, pose monitoring, velocity contro
 
 - [Student Quick Start](docs/student-quick-start.md) — simulator-first onboarding and independent experiments
 - [Docker simulator setup](docker/README.md)
+- [Understanding ROS 2: Nodes, Topics, and Messages](docs/ros2-basics.md)
 - [Java Getting Started](docs/getting-started.md)
 - [Physical TurtleBot 4 setup](docs/turtlebot4-setup.md)
 - [ROS 2 runtime discovery](docs/ros2-discovery.md)
