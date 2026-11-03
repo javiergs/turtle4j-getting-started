@@ -18,51 +18,84 @@ This tutorial shows you how to:
 
 <img width="80%" alt="turtle docker" src="https://github.com/user-attachments/assets/5d739a90-be13-4c90-a975-5be11e8bd5e7" />
 
-## Prerequisite: install and start Docker
+## Prerequisites
 
-Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) on Windows or macOS, or Docker Engine on Linux. **Start Docker** and wait until it is running. Open Terminal (macOS/Linux) or PowerShell (Windows).
-There are two ways to set up the Docker environment:
+Before setting up the simulation environment, install **Docker** on your computer:
 
-## Method 1 — Download a ready-made image (recommended once published)
-
-A *Docker image* is a ready-made package containing the software needed for the environment. We plan to publish one on **GitHub Container Registry (GHCR)**, so you will not need to download source files, clone the repository, or build anything.
-
-**Not yet verified as published:** The following image name is **provisional**. Until the GHCR package is published and publicly accessible, use **Method 2**.
-
-To download the image:
+1. On Windows or macOS, install [Docker Desktop](https://www.docker.com/products/docker-desktop/). On Linux, install Docker Engine with the Docker Compose plugin.
+2. Start Docker Desktop (or make sure Docker Engine is running on Linux).
+3. Open **Terminal** on macOS/Linux or **PowerShell** on Windows.
+4. Check that Docker is available:
 
 ```bash
-docker pull ghcr.io/javiergs/turtle4j-ros2:latest
+docker --version
+docker compose version
 ```
 
-To run it:
+Both commands should display version information. If they do not, check your Docker installation before continuing. You do **not** need to install Ubuntu or ROS 2 separately.
+
+## Set up the Docker environment
+
+There are two ways to prepare the same simulation environment. **Choose only one.**
+
+- **Method 1 — Use a ready-made image:** Docker downloads an already prepared environment. This will be the easiest method once the image is published.
+- **Method 2 — Build from downloaded files:** Download a few files from this repository and let Docker prepare the environment on your computer.
+
+**For now, use Method 2.** The ready-made image for Method 1 has not yet been verified as publicly available.
+
+### Method 1 — Use a ready-made image (not yet available)
+
+A *Docker image* is a prepared package of software. Once the image is published on GitHub Container Registry (GHCR), you will be able to start it with one command, without downloading repository files.
+
+**Do not use this command yet:** The image name below is provisional, and its public availability has not been confirmed.
 
 ```bash
 docker run --rm -it -p 127.0.0.1:6080:6080 -p 127.0.0.1:9090:9090 ghcr.io/javiergs/turtle4j-ros2:latest
 ```
 
-**You can skip the separate `docker pull` command.** When you run `docker run`, Docker automatically downloads the image if it is not already on your computer. The first download can take time; later starts reuse the downloaded image. To explicitly fetch a newer `latest` image, use `docker pull` again.
+When the image is published, Docker will download it automatically the first time you run the command. Keep the terminal open while the environment is running. Then continue to **Open the desktop**.
 
-Keep the terminal open and continue to **Open the desktop**.
+### Method 2 — Build from downloaded files (recommended now)
 
-## Method 2 — Build from downloaded files (works now)
+You do not need Git or any experience with GitHub commands.
 
-You do **not** need Git or a repository clone.
+**Step 1. Download the files**
 
-1. Go to the [repository home page](https://github.com/javiergs/turtle4j-getting-started).
-2. Click **Code → Download ZIP**.
-3. Extract the ZIP and open its **docker** folder.
-4. Keep the following files together: `Dockerfile` (build instructions), `compose.yaml` (run configuration), `supervisord.conf` (starts services), and `turtle4j-wallpaper.png` (desktop background). The wallpaper is automatically included during the build.
-5. Open a terminal **in the extracted docker folder**. You can navigate there with `cd` followed by the folder path.
-6. Run:
+1. Open the [Turtle4J Getting Started repository](https://github.com/javiergs/turtle4j-getting-started).
+2. Click the green **Code** button and select **Download ZIP**.
+3. Find the downloaded ZIP file and extract it.
+4. Open the extracted folder, then open the `docker` folder.
+
+Inside `docker`, you should see these files:
+
+- `Dockerfile` — Tells Docker how to prepare the environment.
+- `compose.yaml` — Tells Docker how to start it.
+- `supervisord.conf` — Starts the programs needed inside the container.
+- `turtle4j-wallpaper.png` — Provides the desktop background.
+
+Leave these files together in the `docker` folder.
+
+**Step 2. Open a terminal in the docker folder**
+
+Open Terminal (macOS/Linux) or PowerShell (Windows), and navigate to the extracted `docker` folder. For example, if you extracted the ZIP into Downloads:
+
+```bash
+cd ~/Downloads/turtle4j-getting-started-main/docker
+```
+
+The folder location may be different on your computer. On Windows PowerShell, you can type `cd ` (with a space), drag the `docker` folder into the window to insert its full path, and press Enter.
+
+**Step 3. Build and start the environment**
+
+With Docker running and your terminal inside the `docker` folder, enter:
 
 ```bash
 docker compose up --build
 ```
 
-Docker now downloads the required software and builds the environment. **The first build may take several minutes or longer.** Leave this terminal running.
+Docker downloads the necessary software, builds the environment, and starts the container. The first build can take several minutes or longer, depending on your internet connection and computer.
 
-**Difference between the options:** Method 1 downloads an image that has already been built. Method 2 builds that image locally from the supplied files. Both provide the same type of environment.
+Keep this terminal open. When the startup messages settle, continue to **Open the desktop**.
 
 ## Open the desktop
 
