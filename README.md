@@ -32,8 +32,6 @@ Connect to a ROS 2 computer running rosbridge on your robot's network. Follow th
 ws://<ROSBRIDGE_HOST_IP>:9090
 ```
 
-Both environments use the same Turtle4J Java API.
-
 ## Step 2. Understand ROS 2
 
 If you are new to ROS 2, complete [Understanding ROS 2: Nodes, Topics, and Messages](docs/ros2-basics.md). You will explore nodes and topics, observe turtle position messages, and send movement commands from a terminal.
