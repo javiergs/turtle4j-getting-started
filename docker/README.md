@@ -6,33 +6,73 @@ This tutorial uses Docker to create a virtual Linux desktop running Ubuntu 22.04
 
 ## Step 1 — Install and start Docker
 
-Docker is the application that runs the simulation environment on your computer.
+Docker runs the simulation environment on your computer. You only need to install it once.
 
-1. **Windows or macOS:** Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/). **Linux:** Install Docker Engine and the Docker Compose plugin.
-2. Start Docker Desktop (or start Docker Engine on Linux) and wait until it is ready.
-3. Open **Terminal** (macOS/Linux) or **PowerShell** (Windows). You will type the commands below into this window.
+### A. Install Docker
 
-Check that Docker is installed:
+Choose an installation method for your operating system.
+
+**Option 1 — Graphical interface (GUI)**
+
+On Windows or macOS, download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/). On Linux, follow the [official Docker Engine installation instructions](https://docs.docker.com/engine/install/) for your distribution.
+
+**Option 2 — Command line (CLI)**
+
+If you prefer using a terminal, install Docker using the appropriate command:
+
+**macOS (Homebrew):**
 
 ```bash
-docker --version
+brew install --cask docker-desktop
 ```
 
-Check that Docker is running:
+**Windows (PowerShell):**
+
+```powershell
+winget install --id Docker.DockerDesktop -e
+```
+
+**Ubuntu Linux:**
+
+First, configure [Docker's official APT repository](https://docs.docker.com/engine/install/ubuntu/). Then run:
 
 ```bash
-docker info
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-**Important: installing Docker is not the same as starting it.** Docker Desktop must be open and its engine must be running **before** you use `docker pull`, `docker run`, or `docker compose`.
+The Ubuntu commands require Docker's official repository; they will not work on a fresh Ubuntu installation without that setup.
 
-If `docker info` shows information about the Docker **Server** without a connection error, Docker is ready. If it says **"failed to connect to the Docker API"**, **"Cannot connect to the Docker daemon"**, or mentions a missing `docker.sock` file, start Docker Desktop and wait until it reports that the engine is running. On macOS, you can start it from Terminal with:
+### B. Start Docker
+
+On Windows or macOS, open **Docker Desktop** and wait until it reports that the engine is running. Installing Docker does not automatically mean it is running.
+
+On macOS, you can also launch Docker Desktop from Terminal:
 
 ```bash
 open -a Docker
 ```
 
-Then try `docker info` again. **Do not continue to Method 1 or Method 2 until this check succeeds.** You do not need to install Ubuntu or ROS 2 separately.
+On Ubuntu Linux, start Docker Engine with:
+
+```bash
+sudo systemctl start docker
+```
+
+### C. Verify Docker
+
+Open **Terminal** (macOS/Linux) or **PowerShell** (Windows) and run:
+
+```bash
+docker --version
+docker info
+```
+
+The first command checks that Docker is installed. The second checks that its engine is running. If `docker info` shows **Server** information without a connection error, you are ready.
+
+If it reports **Cannot connect to the Docker daemon**, **failed to connect to the Docker API**, or a missing `docker.sock` file, start Docker Desktop (or Docker Engine on Linux), wait until it is ready, and run `docker info` again. On Linux, you may also need to [configure permission to run Docker without sudo](https://docs.docker.com/engine/install/linux-postinstall/).
+
+**Do not continue to Step 2 until `docker info` succeeds.** You do not need to install Ubuntu or ROS 2 separately.
 
 ## Step 2 — Get the simulation environment
 
