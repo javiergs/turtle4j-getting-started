@@ -54,6 +54,10 @@ Turtle4J 1.1.0 is available on Maven Central. To use the library in your own Mav
 
 The runnable examples in this repository already include the dependency.
 
+## TurtleBridge — MQTT ↔ ROS 2 desktop application
+
+[TurtleBridge release preparation and installation guide](docs/turtlebridge.md) — a separate application for connecting MQTT messages to Turtlesim through ROS 2, without writing Java. **Installers are not published yet.** The guide explains planned macOS, Windows, and Linux packages, first-run configuration, and the remaining validation steps.
+
 ## Examples
 
 Ten ROS 2 examples cover connection, discovery, pose monitoring, velocity control, keyboard teleoperation, and feedback-based motion. See the [Java examples guide](docs/examples.md). MQTT examples are introduced separately after the ROS 2 exercises.
