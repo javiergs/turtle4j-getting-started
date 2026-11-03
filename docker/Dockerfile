@@ -89,3 +89,8 @@ COPY turtle4j-wallpaper.png /usr/share/backgrounds/turtle4j-wallpaper.png
 RUN mkdir -p /root/.config/pcmanfm/LXDE && \
     printf '[*]\nwallpaper_mode=stretch\nwallpaper=/usr/share/backgrounds/turtle4j-wallpaper.png\ndesktop_fg=#000000\n' \
     > /root/.config/pcmanfm/LXDE/desktop-items-0.conf
+
+# Image metadata identifies this as a simulation desktop, not a Java library.
+LABEL org.opencontainers.image.title="ROS 2 Turtlesim Desktop" \
+      org.opencontainers.image.description="Browser-accessible Ubuntu desktop with ROS 2 Humble, Turtlesim, and rosbridge for robotics education and simulation." \
+      org.opencontainers.image.source="https://github.com/javiergs/turtle4j-getting-started"
