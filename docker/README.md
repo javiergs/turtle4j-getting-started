@@ -22,13 +22,13 @@ You do **not** need to install Linux or ROS 2 separately.
 
 Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) on Windows or macOS, or Docker Engine on Linux. **Start Docker** and wait until it is running. Open Terminal (macOS/Linux) or PowerShell (Windows).
 
-Choose **Option A** if a prebuilt image is available; otherwise use **Option B**.
+Choose **Method 1** if a prebuilt image is available; otherwise use **Method 2**. These are two ways to start the same Docker environment, not the two ROS 2 environment choices on the main README.
 
-## Option A — Download a ready-made image (recommended once published)
+## Method 1 — Download a ready-made image (recommended once published)
 
 A *Docker image* is a ready-made package containing the software needed for the environment. We plan to publish one on **GitHub Container Registry (GHCR)**, so you will not need to download source files, clone the repository, or build anything.
 
-**Not yet verified as published:** The following image name is **provisional**. Until the GHCR package is published and publicly accessible, use **Option B**.
+**Not yet verified as published:** The following image name is **provisional**. Until the GHCR package is published and publicly accessible, use **Method 2**.
 
 To download the image:
 
@@ -46,7 +46,7 @@ docker run --rm -it -p 127.0.0.1:6080:6080 -p 127.0.0.1:9090:9090 ghcr.io/javier
 
 Keep the terminal open and continue to **Open the desktop**.
 
-## Option B — Build from downloaded files (works now)
+## Method 2 — Build from downloaded files (works now)
 
 You do **not** need Git or a repository clone.
 
@@ -63,7 +63,7 @@ docker compose up --build
 
 Docker now downloads the required software and builds the environment. **The first build may take several minutes or longer.** Leave this terminal running.
 
-**Difference between the options:** Option A downloads an image that has already been built. Option B builds that image locally from the supplied files. Both provide the same type of environment.
+**Difference between the options:** Method 1 downloads an image that has already been built. Method 2 builds that image locally from the supplied files. Both provide the same type of environment.
 
 ## Open the desktop
 
@@ -110,7 +110,7 @@ ws://localhost:9090
 
 ## Stop the environment
 
-Return to the terminal that started Docker and press **Ctrl+C**. With Option B, you can also run `docker compose down` from the same folder. With Option A, `--rm` removes the stopped container, but the downloaded image remains available.
+Return to the terminal that started Docker and press **Ctrl+C**. With Method 2, you can also run `docker compose down` from the same folder. With Method 1, `--rm` removes the stopped container, but the downloaded image remains available.
 
 ## Troubleshooting
 
@@ -119,7 +119,7 @@ Return to the terminal that started Docker and press **Ctrl+C**. With Option B, 
 - **Port 6080 or 9090 already in use:** Stop the other application or container using that port.
 - **Browser desktop unavailable:** Check that Docker is running and that the startup terminal remains open.
 - **Keyboard does not move the turtle:** Start Turtlesim first and click the keyboard-control terminal to give it focus.
-- **Option A says image not found or access denied:** The GHCR package may not be published or public yet. Use Option B.
+- **Method 1 says image not found or access denied:** The GHCR package may not be published or public yet. Use Method 2.
 
 ## For maintainers: publishing the ready-made image
 
