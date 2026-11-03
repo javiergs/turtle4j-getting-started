@@ -90,14 +90,8 @@ The `-r /cmd_vel:=/turtle1/cmd_vel` option redirects the program's velocity mess
 ## What Did You Learn?
 
 - A **node** is a running ROS 2 program, such as `/turtlesim`.
-- A **topic** is a named channel, such as `/turtle1/cmd_vel`.
-- A **message** is structured data published on a topic, such as a `geometry_msgs/msg/Twist` velocity command.
-- **Publishers** send messages; **subscribers** receive them.
+- A **topic** is a named channel used to exchange information, such as `/turtle1/cmd_vel`.
+- A **message** contains structured data, such as a `geometry_msgs/msg/Twist` movement command.
+- **Publishers** send messages to topics, while **subscribers** receive them.
 
-```text
-Keyboard → teleop_twist_keyboard → /turtle1/cmd_vel → Turtlesim
-Terminal → ros2 topic pub      → /turtle1/cmd_vel → Turtlesim
-```
-
-Both approaches control the same turtle through the same ROS 2 topic.
-
+In this tutorial, you controlled the turtle in two ways: by publishing movement commands directly from the terminal and by using the keyboard. Both methods publish messages to `/turtle1/cmd_vel`, which Turtlesim subscribes to. When Turtlesim receives a movement command, it moves the turtle.
