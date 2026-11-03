@@ -6,8 +6,6 @@
 
 **Turtle4J** is a Java library for communicating with ROS 2 through rosbridge WebSockets. This repository provides runnable Java examples and a Docker-based environment with ROS 2 Humble and Turtlesim 2D for learning topic discovery, publishing, subscribing, and basic robot motion control. Turtle4J also supports independent MQTT communication.
 
-The included Turtlesim environment is intended for learning and experimentation, not as a full TurtleBot 4 simulator.
-
 <img width="80%" alt="685696458-5a4f43a3-5cac-453b-af49-83aa24428003" src="https://github.com/user-attachments/assets/7ffff468-7847-491a-85df-983a49607bb0" />
 
 ## 0. Requirements
@@ -22,7 +20,7 @@ Choose where your ROS 2 system will run:
 - **Option A — Turtlesim 2D in Docker (recommended for beginners):** Run ROS 2 Humble, rosbridge, and a 2D turtle simulator locally without a physical robot. Follow the [Docker setup tutorial](docker/README.md). Java applications connect to `ws://localhost:9090`.
 - **Option B — Physical TurtleBot 4:** Connect to a ROS 2 computer running rosbridge on your robot's network. Follow the [physical robot setup guide](docs/turtlebot4-setup.md). Java applications connect to `ws://<ROSBRIDGE_HOST_IP>:9090`.
 
-Both environments use the same Turtle4J Java API. The Docker simulator is a learning environment, not a full TurtleBot 4 simulator.
+Both environments use the same Turtle4J Java API.
 
 ## 2. Understand ROS 2
 
