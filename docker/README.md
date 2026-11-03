@@ -1,20 +1,20 @@
-# Turtlesim 2D — Getting started with ROS 2
+# Docker Setup for Turtlesim 2D Environment
 
-This tutorial sets up a **virtual Linux desktop** on your computer. You will start a small turtle simulator, move the turtle with your keyboard, and learn how Java programs can communicate with ROS 2 using **Turtle4J**.
+This tutorial shows you how to:
 
-You do **not** need to install Linux or ROS 2 separately.
+* Set up a virtual Linux desktop on your computer using Docker.
+* Launch the Turtlesim 2D simulator.
+* Control the turtle using your keyboard.
+* Connect Java applications to ROS 2 using Turtle4J.
 
-## What are we installing?
+# What are we installing?
 
 - **Docker** runs a packaged software environment (a *container*) on your computer.
 - **Ubuntu 22.04** is the Linux operating system inside that container.
 - **ROS 2 Humble** lets robotics programs communicate.
 - **Turtlesim** shows a turtle moving in a two-dimensional window.
-- **Keyboard Teleop** sends movement commands to the turtle.
 - **rosbridge** allows external programs, including Java applications using Turtle4J, to communicate with ROS 2.
 - **Browser desktop (noVNC)** lets you interact with the Linux desktop from your regular web browser.
-
-**Turtle4J is a Java library, not the Linux desktop.** This container provides a practice environment for learning ROS 2 and testing Java applications.
 
 <img width="70%" alt="Linux desktop provided by the Docker environment" src="https://github.com/user-attachments/assets/75c8e3e9-be42-43b4-a505-51c06997ead0" />
 
