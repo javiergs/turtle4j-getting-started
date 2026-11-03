@@ -10,11 +10,6 @@ The included Turtlesim environment is intended for learning and experimentation,
 
 <img width="80%" alt="685696458-5a4f43a3-5cac-453b-af49-83aa24428003" src="https://github.com/user-attachments/assets/7ffff468-7847-491a-85df-983a49607bb0" />
 
-## 0. Requirements
-
-- **Java 21+** and Maven
-- A ROS 2 system accessible through rosbridge (choose Option A or B below)
-
 ## 1. Choose your ROS 2 environment
 
 Choose where your ROS 2 system will run:
@@ -31,6 +26,8 @@ If you are new to ROS 2, complete [Understanding ROS 2: Nodes, Topics, and Messa
 If you already know ROS 2, you can proceed directly to the Java tutorial.
 
 ## 3. Using Turtle4J in your project
+
+To run the Java examples, install **Java 21 or newer** and **Maven** on your computer. You can verify both installations with `java -version` and `mvn -version`. These tools are not required for the Docker and ROS 2 tutorials above.
 
 Follow the [Java Getting Started guide](docs/getting-started.md) to run your first example and connect Java to ROS 2 through rosbridge. The guide contains the commands, expected results, and setup details.
 
