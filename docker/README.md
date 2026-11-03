@@ -4,8 +4,8 @@ In this tutorial, you will:
 
 1. **Set up a virtual Linux desktop** on your computer using Docker.
 2. **Launch the Turtlesim 2D simulator** inside that desktop.
-3. **Control the turtle** using ROS 2 command-line commands.
-4. **Connect a Java application** to ROS 2 using **Turtle4J**.
+
+After the simulator is running, continue with [Understanding ROS 2](../docs/ros2-basics.md), followed by [Getting Started with Turtle4J](../docs/getting-started.md).
 
 # What are we installing?
 
@@ -54,7 +54,7 @@ Then try `docker info` again. **Do not continue to Method 1 or Method 2 until th
 
 Docker uses an **image** (a package containing the software) to start a **container** (the running environment). You can either download an image someone has already built or build it yourself. **Choose one of the following methods.**
 
-**Method 1** downloads a prebuilt image and is simplest once the package is public. **Method 2** builds the image on your computer from the provided files. If the prebuilt image cannot be downloaded yet, use Method 2.
+**Method 1** downloads the published prebuilt image and is the simplest option. **Method 2** builds the image on your computer from the provided files.
 
 #### Method 1 — Download the Docker image
 
@@ -72,7 +72,7 @@ docker run --rm -it --shm-size=1g -e DISPLAY=:1 -p 127.0.0.1:6080:6080 -p 127.0.
 
 The image is built and published by the repository's GitHub Actions workflow. **If the download reports that the image cannot be found or access is denied**, the publishing workflow may not have completed or the package may not yet be public. In that case, use Method 2. Keep the terminal open while the container runs.
 
-#### Method 2 — Build the image from the provided Dockerfile (available now)
+#### Method 2 — Build the image from the provided Dockerfile
 
 **1. Download the files.** Open the [repository home page](https://github.com/javiergs/turtle4j-getting-started), click **Code → Download ZIP**, and extract the ZIP file. Open its `docker` folder. You should find `Dockerfile`, `compose.yaml`, `supervisord.conf`, and `turtle4j-wallpaper.png`. Keep these files together.
 
@@ -122,45 +122,14 @@ Double-click **Turtlesim 2D** on the Linux desktop. If prompted, select **Run as
 
 Turtlesim is a simple ROS 2 program: it draws a turtle and moves it in response to commands. No physical robot is needed.
 
-## Step 3 — Control the turtle using ROS 2 commands
+## Next steps
 
-Keep Turtlesim open. Inside the browser-based Linux desktop, open a terminal and enter:
+You now have a running Linux desktop and Turtlesim simulator. **Keep the Docker container and Turtlesim running** while you continue:
 
-```bash
-ros2 topic list
-```
+1. **[Understanding ROS 2: Nodes, Topics, and Messages](../docs/ros2-basics.md)** — open a terminal inside the Linux desktop, explore ROS 2 commands, and learn what the Keyboard Teleop 2D shortcut does.
+2. **[Getting Started with Turtle4J](../docs/getting-started.md)** — connect a Java application to the simulator through rosbridge at `ws://localhost:9090`.
 
-This lists the ROS 2 topics available in the running environment. Look for `/turtle1/cmd_vel`, the topic that receives movement commands.
-
-To send a short forward-movement command, enter:
-
-```bash
-ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0}, angular: {z: 0.0}}"
-```
-
-The turtle should move briefly. If you want to try turning, enter:
-
-```bash
-ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0}, angular: {z: 2.0}}"
-```
-
-**What happened?** A ROS 2 *topic* is a named channel for messages. Your terminal published a velocity command on `/turtle1/cmd_vel`, and Turtlesim received it. The `linear.x` value controls forward motion; `angular.z` controls turning. These commands set speed, not a destination.
-
-## Step 4 — Connect Java using Turtle4J
-
-Your Java application can send commands through Turtle4J and rosbridge instead of the ROS 2 terminal:
-
-```text
-Java application → Turtle4J → rosbridge → ROS 2 → Turtlesim
-```
-
-For a Java application running on your computer, the **rosbridge WebSocket** address is:
-
-```text
-ws://localhost:9090
-```
-
-The browser address opens the Linux desktop; the WebSocket address is for Java-to-ROS communication. Follow the [Java getting-started guide](../docs/getting-started.md) to install Java, run the example application, and test the connection.
+The browser address `http://localhost:6080/vnc.html` opens the Linux desktop. The WebSocket address `ws://localhost:9090` is for Java-to-ROS communication.
 
 ## Stop the environment
 
@@ -173,5 +142,5 @@ Return to the terminal that started Docker and press **Ctrl+C**. If you used the
 - **Port 6080 or 9090 already in use:** Stop the other application or container using that port.
 - **Browser desktop unavailable:** Check that Docker is running and that the startup terminal remains open.
 - **ROS 2 command does not move the turtle:** Start Turtlesim first, then run the command in a terminal inside the Linux desktop.
-- **Method 1 says image not found or access denied:** The GHCR package may not be published or public yet. Use Method 2.
+- **Method 1 says image not found or access denied:** Check your network connection and the package's availability; Method 2 builds the image locally.
 
