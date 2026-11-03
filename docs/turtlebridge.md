@@ -1,6 +1,6 @@
 # TurtleBridge — MQTT ↔ ROS 2 without writing Java
 
-> **Release preparation:** Native TurtleBridge installers are **not published yet**. The Docker image described below is published. This guide is a preview for students and will be finalized after clean-machine installation tests. Do not attempt to download an installer until a release is announced.
+> **Available now:** The TurtleBridge Docker image is published. Native desktop installers are not yet available; use the Docker instructions below.
 
 TurtleBridge is a separate application that connects an MQTT broker to ROS 2 through rosbridge. Unlike the Turtle4J Java examples, TurtleBridge does **not** require you to install Java, Maven, or the private source code. It is designed for learning with **Turtlesim**, not for controlling physical robots.
 
@@ -34,7 +34,7 @@ Next, [open the Linux desktop and launch Turtlesim](../docker/README.md#step-3--
 
 **Important:** The separate desktop installers below are not yet verified releases. Use the Docker image for the current student tutorial.
 
-## 2. Install TurtleBridge (after release)
+## 2. Native TurtleBridge installers (planned)
 
 Installers will be provided on the public [GitHub Releases page](https://github.com/javiergs/turtle4j-getting-started/releases). **There are no TurtleBridge installers available here yet.** Do not download installers from unofficial sources.
 
@@ -49,7 +49,7 @@ Each installer bundles the Java runtime used by TurtleBridge. Windows ARM64, Lin
 
 **Security notices:** Initial unsigned or unnotarized builds may trigger macOS Gatekeeper or Windows SmartScreen warnings. Do not disable system-wide security protections or bypass warnings for an unverified installer. Ask your instructor for a verified release and installation guidance.
 
-## 3. First-run configuration
+## 3. Native application configuration (planned)
 
 TurtleBridge creates a configuration file when started without arguments:
 
