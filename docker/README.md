@@ -116,13 +116,7 @@ The image is built and published by the repository's GitHub Actions workflow. **
 
 **1. Download the files.** Download `Dockerfile`, `compose.yaml`, `supervisord.conf`, and `turtle4j-wallpaper.png` from this folder. Save all four files in the same directory on your computer.
 
-**2. Open a terminal in the `docker` folder.** For example, if you extracted the ZIP into Downloads on macOS or Linux:
-
-```bash
-cd ~/Downloads/turtle4j-getting-started-main/docker
-```
-
-On Windows, open the extracted `docker` folder in File Explorer, click the address bar, type `powershell`, and press Enter. This opens PowerShell in that folder.
+**2. Open a terminal in the folder where you saved the four files.** Navigate to that folder using `cd`, or open a terminal directly from the folder in your file manager. Make sure `Dockerfile` is in your current directory before continuing.
 
 **3. Build the image.** In that terminal, run:
 
