@@ -52,9 +52,7 @@ Then try `docker info` again. **Do not continue to Method 1 or Method 2 until th
 
 ### B. Get the simulation environment
 
-Docker uses an **image** (a package containing the software) to start a **container** (the running environment). You can either download an image someone has already built or build it yourself. **Choose one of the following methods.**
-
-**Method 1** downloads the published prebuilt image and is the simplest option. **Method 2** builds the image on your computer from the provided files.
+Docker uses an **image** (a package containing the software) to start a **container** (the running environment). You can either download an image someone has already built or build it yourself. **Choose one of the following methods:** Method 1 downloads the published prebuilt image and is the simplest option, Method 2 builds the image on your computer from the provided files.
 
 #### Method 1 — Download the Docker image
 
