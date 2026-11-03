@@ -88,8 +88,26 @@ docker pull ghcr.io/javiergs/turtle4j-ros2:latest
 
 Then start the container:
 
+**macOS/Linux (Terminal):**
+
 ```bash
-docker run --rm -it --shm-size=1g -e DISPLAY=:1 -p 127.0.0.1:6080:6080 -p 127.0.0.1:9090:9090 ghcr.io/javiergs/turtle4j-ros2:latest
+docker run --rm -it \
+  --shm-size=1g \
+  -e DISPLAY=:1 \
+  -p 127.0.0.1:6080:6080 \
+  -p 127.0.0.1:9090:9090 \
+  ghcr.io/javiergs/turtle4j-ros2:latest
+```
+
+**Windows (PowerShell):**
+
+```powershell
+docker run --rm -it `
+  --shm-size=1g `
+  -e DISPLAY=:1 `
+  -p 127.0.0.1:6080:6080 `
+  -p 127.0.0.1:9090:9090 `
+  ghcr.io/javiergs/turtle4j-ros2:latest
 ```
 
 The image is built and published by the repository's GitHub Actions workflow. **If the download reports that the image cannot be found or access is denied**, the publishing workflow may not have completed or the package may not yet be public. In that case, use Method 2. Keep the terminal open while the container runs.
@@ -116,8 +134,26 @@ The final `.` means “use the Dockerfile in the current folder.” Docker downl
 
 **4. Start the container.** After the build finishes, run:
 
+**macOS/Linux (Terminal):**
+
 ```bash
-docker run --rm -it --shm-size=1g -e DISPLAY=:1 -p 127.0.0.1:6080:6080 -p 127.0.0.1:9090:9090 turtle4j-ros2:local
+docker run --rm -it \
+  --shm-size=1g \
+  -e DISPLAY=:1 \
+  -p 127.0.0.1:6080:6080 \
+  -p 127.0.0.1:9090:9090 \
+  turtle4j-ros2:local
+```
+
+**Windows (PowerShell):**
+
+```powershell
+docker run --rm -it `
+  --shm-size=1g `
+  -e DISPLAY=:1 `
+  -p 127.0.0.1:6080:6080 `
+  -p 127.0.0.1:9090:9090 `
+  turtle4j-ros2:local
 ```
 
 Keep this terminal open while using the environment.
