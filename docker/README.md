@@ -1,13 +1,6 @@
 # Docker Setup for Turtlesim 2D Environment
 
-In this tutorial, you will:
-
-1. **Set up a virtual Linux desktop** on your computer using Docker.
-2. **Launch the Turtlesim 2D simulator** inside that desktop.
-
-After the simulator is running, continue with [Understanding ROS 2](../docs/ros2-basics.md), followed by [Getting Started with Turtle4J](../docs/getting-started.md).
-
-# What are we installing?
+What are we installing?
 
 * Docker: Runs the container that hosts the simulation environment.
 * Ubuntu 22.04: Provides the Linux operating system inside the container.
