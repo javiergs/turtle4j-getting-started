@@ -1,58 +1,73 @@
-# Getting started
+# Getting started with Java and Turtle4J
 
-For a guided first-time learning sequence, see the [Student Quick Start](student-quick-start.md).
+This guide shows how to compile and run the Java examples after a ROS 2 environment is ready. If you have not configured an environment yet, choose [Turtlesim in Docker](../docker/README.md) for local practice or [physical TurtleBot 4 setup](turtlebot4-setup.md) for hardware.
 
-TURTLE4J is a Java client for an existing ROS 2 rosbridge WebSocket server. Choose one of two environments below. Both use the same Java API.
+For a longer learning sequence, see the [Student Quick Start](student-quick-start.md).
 
-## Option A: Turtlesim in Docker
+## Requirements
 
-Use the included ROS 2 Humble + rosbridge + Turtlesim 2D desktop for development without a robot. This is **not** a full TurtleBot 4 simulator.
+- Java 21 or newer (the example project targets Java 21).
+- Maven.
+- A running ROS 2 system with a reachable rosbridge WebSocket server.
 
-1. Follow the [Docker setup guide](../docker/README.md).
-2. Start the container and launch **Turtlesim 2D** from its browser desktop.
-3. The Java application connects to `ws://localhost:9090`.
-4. [Run a Java example](examples.md).
-
-The Docker environment is optional and does not require Maven to start.
-
-## Option B: Physical TurtleBot 4
-
-A ROS 2 computer on the robot's network must run rosbridge. This may be the robot's computer or another reachable ROS 2 computer. Do **not** assume rosbridge is preinstalled on the robot.
-
-For ROS 2 Humble, on the computer hosting rosbridge:
+Check your Java and Maven installations:
 
 ```bash
-sudo apt update
-sudo apt install ros-humble-rosbridge-suite
-source /opt/ros/humble/setup.bash
-ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+java -version
+mvn -version
 ```
 
-Connect to the reachable rosbridge host (default WebSocket port: 9090):
+## Obtain the examples
 
-```java
-TurtleClient client = new TurtleClient("ws://<ROSBRIDGE_HOST_IP>:9090");
+You can download the project without Git:
+
+1. Open the [repository home page](https://github.com/javiergs/turtle4j-getting-started).
+2. Select **Code → Download ZIP**.
+3. Extract the ZIP file.
+4. Open a terminal in the extracted repository folder (the folder containing `pom.xml`).
+
+Alternatively, if you already use Git:
+
+```bash
+git clone https://github.com/javiergs/turtle4j-getting-started.git
+cd turtle4j-getting-started
 ```
 
-Import `com.javiergs.turtle4j.TurtleClient`. For a remote robot, `localhost` refers to the computer running Java, not the robot. Verify network reachability, ROS 2 namespaces, and the actual motion topic before commanding movement. Use conservative speeds and maintain a reliable way to stop the robot. The bundled Turtlesim motion examples are **not** ready-to-run physical TurtleBot 4 navigation programs.
+## Compile the project
 
-Runtime capability discovery additionally requires **rosapi** to be running; rosbridge alone is sufficient for raw publish/subscribe. See [ROS 2 discovery](ros2-discovery.md).
-
-## Java requirements and Maven setup
-
-- **Java 21 or newer** (the Maven project targets Java 21).
-- **Maven**.
-- A reachable rosbridge WebSocket endpoint.
-
-From the repository root, compile the example project:
+From the folder containing `pom.xml`:
 
 ```bash
 mvn compile
 ```
 
-Maven resolves the published TURTLE4J dependency automatically.
+Maven automatically downloads the published TURTLE4J library and the other declared dependencies.
 
-The published Maven Central coordinates are `com.javiergs:turtle4j:1.1.0`. To use the library in another Maven project:
+## Connect to ROS 2
+
+Keep your ROS 2 environment and rosbridge running. The local Docker setup exposes rosbridge at `ws://localhost:9090`. For a physical robot, use the reachable IP address of the computer hosting rosbridge, such as `ws://ROBOT_IP:9090`.
+
+**Note:** `localhost` always refers to the computer running the Java program. It does not refer to a remote robot.
+
+## Run your first example
+
+From the folder containing `pom.xml`:
+
+```bash
+mvn exec:java -Dexec.mainClass=examples.ConnectRobot
+```
+
+The example connects to `ws://localhost:9090` by default and prints a discovery status. To use a remote rosbridge host:
+
+```bash
+mvn exec:java -Dexec.mainClass=examples.ConnectRobot -Dexec.args=ws://ROBOT_IP:9090
+```
+
+For more programs, see the [Java examples guide](examples.md). The included motion examples are designed for Turtlesim 2D; do not run them unchanged on physical hardware.
+
+## Use Turtle4J in your own Maven project
+
+The published Maven Central coordinates are `com.javiergs:turtle4j:1.1.0`. Add this dependency to your project's `pom.xml`:
 
 ```xml
 <dependency>
@@ -62,18 +77,10 @@ The published Maven Central coordinates are `com.javiergs:turtle4j:1.1.0`. To us
 </dependency>
 ```
 
-## Run a Java example
+## Troubleshooting
 
-Start rosbridge using Option A or B above, then run this command from the repository root:
-
-```bash
-mvn exec:java -Dexec.mainClass=examples.ConnectRobot
-```
-
-The example uses `ws://localhost:9090` by default. For a different rosbridge host:
-
-```bash
-mvn exec:java -Dexec.mainClass=examples.ConnectRobot -Dexec.args=ws://ROBOT_IP:9090
-```
-
-See the [examples guide](examples.md) for additional programs. The included motion examples target Turtlesim 2D; do not run them unchanged on physical hardware.
+- **Java or Maven not found:** Install the tools, reopen your terminal, and check `java -version` and `mvn -version`.
+- **No `pom.xml`:** Change into the extracted repository root before running Maven.
+- **Connection refused:** Check that ROS 2 and rosbridge are running and port `9090` is reachable.
+- **Discovery is unavailable:** Some discovery features require `rosapi`. See [ROS 2 runtime discovery](ros2-discovery.md).
+- **No pose messages:** Confirm Turtlesim is running and publishing `/turtle1/pose`.
