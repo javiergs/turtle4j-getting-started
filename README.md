@@ -8,7 +8,7 @@ Turtle4J is a Java library for communicating with ROS 2 systems, including Turtl
 
 <img width="80%" alt="685696458-5a4f43a3-5cac-453b-af49-83aa24428003" src="https://github.com/user-attachments/assets/7ffff468-7847-491a-85df-983a49607bb0" />
 
-## 1. Choose your ROS 2 environment
+## Step 1. Choose your ROS 2 environment
 
 Choose where your ROS 2 system will run:
 
@@ -34,13 +34,13 @@ ws://<ROSBRIDGE_HOST_IP>:9090
 
 Both environments use the same Turtle4J Java API.
 
-## 2. Understand ROS 2
+## Step 2. Understand ROS 2
 
 If you are new to ROS 2, complete [Understanding ROS 2: Nodes, Topics, and Messages](docs/ros2-basics.md). You will explore nodes and topics, observe turtle position messages, and send movement commands from a terminal.
 
 If you already know ROS 2, you can proceed directly to the Java tutorial.
 
-## 3. Using Turtle4J in your project
+## Step 3. Using Turtle4J in your project
 
 To run the Java examples, install **Java 21 or newer** and **Maven** on your computer. You can verify both installations with `java -version` and `mvn -version`. These tools are not required for the Docker and ROS 2 tutorials above.
 
@@ -58,16 +58,16 @@ Turtle4J 1.1.0 is available on Maven Central. To use the library in your own Mav
 
 The runnable examples in this repository already include the dependency.
 
-## 4. Examples
+## Examples
 
 Ten ROS 2 examples cover connection, discovery, pose monitoring, velocity control, keyboard teleoperation, and feedback-based motion. See the [Java examples guide](docs/examples.md). MQTT examples are introduced separately after the ROS 2 exercises.
 
-## 5. API documentation
+## API documentation
 
 - [Turtle4J 1.1.0 JavaDoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.1.0/) — published release
 - [Development JavaDoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/development/) — evolving API documentation
 
-## 6. Additional guides
+## Additional guides
 
 - [Developing New Functionality with Turtle4J](docs/extending-turtle4j.md) — design, implement, and test independent Java experiments.
 - [ROS 2 runtime discovery](docs/ros2-discovery.md) — inspect capabilities and troubleshoot discovery.
