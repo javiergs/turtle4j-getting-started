@@ -46,11 +46,11 @@ If `docker info` shows information about your Docker installation without a conn
 
 Docker uses an **image** (a package containing the software) to start a **container** (the running environment). You can either download an image someone has already built or build it yourself. **Choose one of the following methods.**
 
-**Currently, use Method 2.** The ready-made image in Method 1 has not yet been verified as publicly available.
+**Method 1** downloads a prebuilt image and is simplest once the package is public. **Method 2** builds the image on your computer from the provided files. If the prebuilt image cannot be downloaded yet, use Method 2.
 
-#### Method 1 — Download a ready-made image (after publication)
+#### Method 1 — Download the Docker image
 
-Once the image is published on GitHub Container Registry, open Terminal or PowerShell and download it:
+Open Terminal or PowerShell and download the image from GitHub Container Registry:
 
 ```bash
 docker pull ghcr.io/javiergs/turtle4j-ros2:latest
@@ -59,10 +59,10 @@ docker pull ghcr.io/javiergs/turtle4j-ros2:latest
 Then start the container:
 
 ```bash
-docker run --rm -it -p 127.0.0.1:6080:6080 -p 127.0.0.1:9090:9090 ghcr.io/javiergs/turtle4j-ros2:latest
+docker run --rm -it --shm-size=1g -e DISPLAY=:1 -p 127.0.0.1:6080:6080 -p 127.0.0.1:9090:9090 ghcr.io/javiergs/turtle4j-ros2:latest
 ```
 
-**Not available yet:** The image name above is provisional. Until it has been published and tested, use Method 2 instead. Keep the terminal open while the container runs.
+The image is built and published by the repository's GitHub Actions workflow. **If the download reports that the image cannot be found or access is denied**, the publishing workflow may not have completed or the package may not yet be public. In that case, use Method 2. Keep the terminal open while the container runs.
 
 #### Method 2 — Build the image from the provided Dockerfile (available now)
 
@@ -87,7 +87,7 @@ The final `.` means “use the Dockerfile in the current folder.” Docker downl
 **4. Start the container.** After the build finishes, run:
 
 ```bash
-docker run --rm -it -p 127.0.0.1:6080:6080 -p 127.0.0.1:9090:9090 turtle4j-ros2:local
+docker run --rm -it --shm-size=1g -e DISPLAY=:1 -p 127.0.0.1:6080:6080 -p 127.0.0.1:9090:9090 turtle4j-ros2:local
 ```
 
 Keep this terminal open while using the environment.
