@@ -20,11 +20,11 @@
 
 ### 1. Choose your ROS 2 environment
 
-**Option A — Turtlesim 2D in Docker:** Run the included ROS 2 Humble, rosbridge, and Turtlesim desktop locally without a physical robot. Connect to `ws://localhost:9090`. [Setup instructions](docs/getting-started.md#option-a-turtlesim-in-docker).
+**Option A — Turtlesim 2D in Docker:** Run the included ROS 2 Humble, rosbridge, and Turtlesim desktop locally without a physical robot. Connect to `ws://localhost:9090`. [Docker setup instructions](docker/README.md).
 
-**Option B — Physical TurtleBot 4:** Connect through a reachable ROS 2 computer running rosbridge. Use `ws://<ROSBRIDGE_HOST_IP>:9090`. [Setup instructions](docs/getting-started.md#option-b-physical-turtlebot-4).
+**Option B — Physical TurtleBot 4:** Connect through a reachable ROS 2 computer running rosbridge. Use `ws://<ROSBRIDGE_HOST_IP>:9090`. [Physical robot setup instructions](docs/turtlebot4-setup.md).
 
-Both options use the same Java API. For the complete configuration steps, see the **[Getting Started guide](docs/getting-started.md)**.
+Both options use the same Java API. Once your environment is running, follow the **[Java Getting Started guide](docs/getting-started.md)**.
 
 ### 2. Run your first Java example
 
@@ -41,11 +41,7 @@ The example connects to rosbridge and prints the discovery status. To connect to
 mvn exec:java -Dexec.mainClass=examples.ConnectRobot -Dexec.args=ws://ROBOT_IP:9090
 ```
 
-For a remote robot, `localhost` means the computer running Java, not the robot. See the [physical TurtleBot 4 setup instructions](docs/getting-started.md).
-
-### 3. Explore more examples
-
-Ten ROS 2 examples cover connection, discovery, pose monitoring, velocity control, keyboard teleoperation, and feedback-based motion. See the [Java examples guide](docs/examples.md). MQTT is introduced separately after the ROS 2 exercises.
+For a remote robot, `localhost` means the computer running Java, not the robot. See the [physical TurtleBot 4 setup instructions](docs/turtlebot4-setup.md).
 
 ## Install with Maven
 
@@ -72,7 +68,8 @@ Ten ROS 2 examples cover connection, discovery, pose monitoring, velocity contro
 
 - [Student Quick Start](docs/student-quick-start.md) — simulator-first onboarding and independent experiments
 - [Docker simulator setup](docker/README.md)
-- [ROS 2 and TurtleBot 4 setup](docs/getting-started.md)
+- [Java Getting Started](docs/getting-started.md)
+- [Physical TurtleBot 4 setup](docs/turtlebot4-setup.md)
 - [ROS 2 runtime discovery](docs/ros2-discovery.md)
 - [API overview](docs/api-reference.md)
 
@@ -85,4 +82,4 @@ Ten ROS 2 examples cover connection, discovery, pose monitoring, velocity contro
 
 ## Robot safety
 
-Turtlesim is a 2D teaching simulator, not a full TurtleBot 4 simulation. Do not run motion examples unchanged on physical hardware. Follow the [ROS 2 and TurtleBot 4 setup guide](docs/getting-started.md) for hardware-specific precautions.
+Turtlesim is a 2D teaching simulator, not a full TurtleBot 4 simulation. Do not run motion examples unchanged on physical hardware. Follow the [physical TurtleBot 4 setup guide](docs/turtlebot4-setup.md) for hardware-specific precautions.
