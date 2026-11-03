@@ -19,8 +19,25 @@ The included Turtlesim environment is intended for learning and experimentation,
 
 Choose where your ROS 2 system will run:
 
-- **Option A — Turtlesim 2D in Docker (recommended for beginners):** Run ROS 2 Humble, rosbridge, and a 2D turtle simulator locally without a physical robot. Follow the [Docker setup tutorial](docker/README.md). Java applications connect to `ws://localhost:9090`.
-- **Option B — Physical TurtleBot 4:** Connect to a ROS 2 computer running rosbridge on your robot's network. Follow the [physical robot setup guide](docs/turtlebot4-setup.md). Java applications connect to `ws://<ROSBRIDGE_HOST_IP>:9090`.
+### Option A — Turtlesim 2D in Docker (recommended for beginners)
+
+Run ROS 2 Humble, rosbridge, and a 2D turtle simulator locally without a physical robot. Follow the [Docker setup tutorial](docker/README.md).
+
+**Rosbridge WebSocket address:**
+
+```text
+ws://localhost:9090
+```
+
+### Option B — Physical TurtleBot 4
+
+Connect to a ROS 2 computer running rosbridge on your robot's network. Follow the [physical robot setup guide](docs/turtlebot4-setup.md).
+
+**Rosbridge WebSocket address:**
+
+```text
+ws://<ROSBRIDGE_HOST_IP>:9090
+```
 
 Both environments use the same Turtle4J Java API. The Docker simulator is a learning environment, not a full TurtleBot 4 simulator.
 
