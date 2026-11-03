@@ -16,36 +16,28 @@
 - **Java 21+** and Maven
 - A ROS 2 system accessible through rosbridge (choose Option A or B below)
 
-## Quick start
+## 1. Choose your ROS 2 environment
 
-### 1. Choose your ROS 2 environment
+Choose where your ROS 2 system will run:
 
-**Option A — Turtlesim 2D in Docker:** Run the included ROS 2 Humble, rosbridge, and Turtlesim desktop locally without a physical robot. Connect to `ws://localhost:9090`. [Docker setup instructions](docker/README.md).
+- **Option A — Turtlesim 2D in Docker (recommended for beginners):** Run ROS 2 Humble, rosbridge, and a 2D turtle simulator locally without a physical robot. Follow the [Docker setup tutorial](docker/README.md). Java applications connect to `ws://localhost:9090`.
+- **Option B — Physical TurtleBot 4:** Connect to a ROS 2 computer running rosbridge on your robot's network. Follow the [physical robot setup guide](docs/turtlebot4-setup.md). Java applications connect to `ws://<ROSBRIDGE_HOST_IP>:9090`.
 
-**Option B — Physical TurtleBot 4:** Connect through a reachable ROS 2 computer running rosbridge. Use `ws://<ROSBRIDGE_HOST_IP>:9090`. [Physical robot setup instructions](docs/turtlebot4-setup.md).
+Both environments use the same Turtle4J Java API. The Docker simulator is a learning environment, not a full TurtleBot 4 simulator.
 
-Both options use the same Java API. If you are new to ROS 2, first complete **[Understanding ROS 2: Nodes, Topics, and Messages](docs/ros2-basics.md)** with the simulator running. Then follow the **[Java Getting Started guide](docs/getting-started.md)**.
+## 2. Understand ROS 2
 
-### 2. Run your first Java example
+If you are new to ROS 2, complete [Understanding ROS 2: Nodes, Topics, and Messages](docs/ros2-basics.md). You will explore nodes and topics, observe turtle position messages, and send movement commands from a terminal.
 
-From the **repository root**, with rosbridge running:
+If you already know ROS 2, you can proceed directly to the Java tutorial.
 
-```bash
-mvn compile
-mvn exec:java -Dexec.mainClass=examples.ConnectRobot
-```
+## 3. Get started with Turtle4J
 
-The example connects to rosbridge and prints the discovery status. To connect to a different ROS 2 system, supply the reachable rosbridge host:
+Follow the [Java Getting Started guide](docs/getting-started.md) to run your first example and connect Java to ROS 2 through rosbridge. The guide contains the commands, expected results, and setup details.
 
-```bash
-mvn exec:java -Dexec.mainClass=examples.ConnectRobot -Dexec.args=ws://ROBOT_IP:9090
-```
+## Using Turtle4J in your project
 
-For a remote robot, `localhost` means the computer running Java, not the robot. See the [physical TurtleBot 4 setup instructions](docs/turtlebot4-setup.md).
-
-## Install with Maven
-
-TURTLE4J 1.1.0 is published to Maven Central. The examples in this repository already declare:
+Turtle4J 1.1.0 is available on Maven Central. To use the library in your own Maven project, add:
 
 ```xml
 <dependency>
@@ -54,6 +46,8 @@ TURTLE4J 1.1.0 is published to Maven Central. The examples in this repository al
     <version>1.1.0</version>
 </dependency>
 ```
+
+The runnable examples in this repository already include the dependency.
 
 ## Examples
 
