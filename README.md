@@ -1,8 +1,8 @@
-# Getting Started with Turtle4J
+# Getting Started
 
 Resources for developing Java applications that communicate with simulated and physical robots running ROS 2.
 
-This repository provides four complementary resources: a Docker-based simulator for experimenting without physical hardware, an introduction to ROS 2 fundamentals, the turtle4j Java library for communicating with ROS 2 systems, and turtle4j-bridge for connecting MQTT applications to ROS 2.
+This repository provides four complementary resources: a **Docker-based simulator** for experimenting without physical hardware, an introduction to **ROS 2 fundamentals**, the **turtle4j Java library** for communicating with ROS 2 systems, and **turtle4j-mqtt-bridge** for connecting MQTT applications to ROS 2.
 
 <img width="1024" height="683" alt="52FFEAEF-2B1E-4823-935F-09867AA85373" src="https://github.com/user-attachments/assets/5da71059-2a81-4381-b8d0-fbd3ca0cbdc1" />
 
