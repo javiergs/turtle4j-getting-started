@@ -8,7 +8,7 @@ This repository provides four complementary resources: a **Docker-based simulato
 
 ## 1. Need a ROS 2 simulator?
 
-The **Turtlesim Docker Environment** provides Ubuntu 22.04, ROS 2 Humble, Turtlesim 2D, rosbridge, a browser-accessible Linux desktop, and TurtleBridge for MQTT communication. You do not need a physical robot or a separate ROS 2 installation.
+The **Turtlesim Docker Environment** provides Ubuntu 22.04, ROS 2 Humble, Turtlesim 2D, rosbridge, a browser-accessible Linux desktop, and turtle4j-mqtt-bridge for MQTT communication. You do not need a physical robot or a separate ROS 2 installation.
 
 **Docker package:**
 
@@ -28,7 +28,7 @@ Learn about **nodes, topics, and messages**, and practice ROS 2 terminal command
 
 ## 3. Want to develop Java applications?
 
-**Turtle4J** is a Java library for communicating with ROS 2 systems through **rosbridge WebSockets** and **MQTT**. Start by connecting to Turtlesim, then adapt your application to the topics and capabilities of a physical robot such as TurtleBot 4.
+**turtle4j** is a Java library for communicating with ROS 2 systems through **rosbridge WebSockets** or **MQTT**. MQTT communication with ROS 2 requires an MQTT-to-ROS 2 bridge, such as **turtle4j-mqtt-bridge**. Start by connecting to Turtlesim, then adapt your application to the topics and capabilities of a physical robot such as TurtleBot 4.
 
 **Maven dependency:**
 
@@ -46,11 +46,11 @@ For runnable code, see the [Java examples](docs/examples.md), [API overview](doc
 
 ## 4. Need MQTT communication with ROS 2?
 
-**Turtle4J supports MQTT** publishing and subscribing. However, ROS 2 nodes do not automatically receive messages published to an MQTT broker. **TurtleBridge** connects the two systems: it forwards MQTT commands to ROS 2 topics through rosbridge and publishes ROS 2 telemetry back to MQTT. This allows Java applications to use MQTT to communicate with a simulator or robot that exposes ROS 2 interfaces.
+**turtle4j supports MQTT** publishing and subscribing. However, ROS 2 nodes do not automatically receive messages published to an MQTT broker. **turtle4j-mqtt-bridge** connects the two systems: it forwards MQTT commands to ROS 2 topics through rosbridge and publishes ROS 2 telemetry back to MQTT. This allows Java applications to use MQTT to communicate with a simulator or robot that exposes ROS 2 interfaces.
 
-TurtleBridge is **already included in the Docker simulator**. A standalone executable for deployment on a TurtleBot 4's Raspberry Pi is **planned, not yet released**. A physical robot will need a running MQTT-to-ROS 2 bridge for this communication path; direct rosbridge connections do not require TurtleBridge.
+turtle4j-mqtt-bridge is **already included in the Docker simulator**. A standalone executable for deployment on a TurtleBot 4's Raspberry Pi is **planned, not yet released**. A physical robot will need a running MQTT-to-ROS 2 bridge for this communication path; direct rosbridge connections do not require TurtleBridge.
 
-**[Learn about TurtleBridge and MQTT](docs/turtlebridge.md)**
+**[Learn about turtle4j-mqtt-bridge and MQTT](docs/turtlebridge.md)**
 
 ## Additional resources
 
