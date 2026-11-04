@@ -1,4 +1,4 @@
-# Getting started with Java and Turtle4J
+# Getting started with Turtle4J
 
 This guide shows how to compile and run the Java examples after a ROS 2 environment is ready. If you have not configured an environment yet, choose [Turtlesim in Docker](../docker/README.md) for local practice or [physical TurtleBot 4 setup](turtlebot4-setup.md) for hardware.
 
