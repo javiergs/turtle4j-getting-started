@@ -4,8 +4,7 @@ Resources for learning ROS 2 and developing Java applications that communicate w
 
 This repository brings together four complementary resources. Start with a simulator if you do not have a robot, explore ROS 2 communication, and then build Java applications that can connect to a compatible ROS 2 system.
 
-![Turtle4J architecture](https://github.com/user-attachments/assets/7ffff468-7847-491a-85df-983a49607bb0)
-
+<img width="1024" height="683" alt="52FFEAEF-2B1E-4823-935F-09867AA85373" src="https://github.com/user-attachments/assets/5da71059-2a81-4381-b8d0-fbd3ca0cbdc1" />
 ## 1. Need a ROS 2 simulator?
 
 The **Turtlesim Docker Environment** provides Ubuntu 22.04, ROS 2 Humble, Turtlesim 2D, rosbridge, a browser-accessible Linux desktop, and TurtleBridge for MQTT communication. You do not need a physical robot or a separate ROS 2 installation.
