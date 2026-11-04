@@ -1,5 +1,7 @@
 # TurtleBridge — MQTT ↔ ROS 2 with Turtlesim
 
+**Why a bridge?** Turtle4J can publish and subscribe using MQTT, but MQTT broker topics are not ROS 2 topics. A message sent to an MQTT broker does not reach a ROS 2 node by itself. TurtleBridge forwards messages between these systems using rosbridge: for example, an MQTT velocity command reaches ROS 2 `/turtle1/cmd_vel`, and ROS 2 pose telemetry can be forwarded back to MQTT subscribers.
+
 TurtleBridge is a bridge between an **MQTT broker** and **ROS 2**. It runs automatically in the same [Turtlesim Docker environment](../docker/README.md) used for direct ROS 2 and Turtle4J lessons. You do **not** need another Docker image or a separate TurtleBridge installation.
 
 ## 1. Start the environment
@@ -12,7 +14,7 @@ Find the running container:
 docker ps
 ```
 
-Copy the **CONTAINER ID** from the row whose image is `ghcr.io/jgs-lab/turtlesim-docker-environment:latest`. In the commands below, replace `<container-id>` with your actual ID (without angle brackets).
+Copy the **CONTAINER ID** from the row whose image is `ghcr.io/javiergs/turtlesim-docker-environment:latest`. In the commands below, replace `<container-id>` with your actual ID (without angle brackets).
 
 Check that both communication services are running:
 
