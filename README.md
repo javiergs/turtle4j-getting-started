@@ -14,7 +14,7 @@ Choose where your ROS 2 system will run:
 
 ### Option A — Turtlesim 2D in Docker (recommended for beginners)
 
-Run ROS 2 Humble, rosbridge, and a 2D turtle simulator locally without a physical robot. Follow the [Docker setup tutorial](docker/README.md).
+Run one Docker image containing ROS 2 Humble, Turtlesim, rosbridge, and the MQTT ↔ ROS 2 bridge, without a physical robot. Follow the [Docker setup tutorial](docker/README.md).
 
 **Rosbridge WebSocket address:**
 
@@ -56,7 +56,7 @@ The runnable examples in this repository already include the dependency.
 
 ## TurtleBridge — MQTT ↔ ROS 2 application
 
-[TurtleBridge tutorial](docs/turtlebridge.md) — run the published TurtleBridge ROS 2 Simulator Docker image to connect MQTT messages to Turtlesim without writing Java. Native desktop installers are still in preparation.
+[TurtleBridge MQTT tutorial](docs/turtlebridge.md) — use the **same Docker environment** to publish movement commands and receive pose telemetry over MQTT without writing Java.
 
 ## Examples
 
