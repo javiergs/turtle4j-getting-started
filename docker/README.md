@@ -1,6 +1,6 @@
-# ROS 2 Turtlesim Desktop — Docker Setup
+# Turtlesim Docker Environment — Setup
 
-This tutorial uses Docker to create a virtual Linux desktop running Ubuntu 22.04 and ROS 2 Humble. The environment includes Turtlesim, a simple 2D robot simulator, and rosbridge, which allows external applications such as Turtle4J to communicate with ROS 2 through WebSockets. You can access the Linux desktop directly from your web browser using noVNC.
+This tutorial uses Docker to create a virtual Linux desktop running Ubuntu 22.04 and ROS 2 Humble. The environment includes Turtlesim (a simple 2D robot simulator), rosbridge (for Turtle4J Java WebSocket connections), and TurtleBridge (for MQTT communication). You can access the Linux desktop directly from your web browser using noVNC.
 
 <img width="80%" alt="turtle docker" src="https://github.com/user-attachments/assets/5d739a90-be13-4c90-a975-5be11e8bd5e7" />
 
@@ -74,21 +74,19 @@ If it reports **Cannot connect to the Docker daemon**, **failed to connect to th
 
 **Do not continue to Step 2 until `docker info` succeeds.** You do not need to install Ubuntu or ROS 2 separately.
 
-## Step 2 — Get the simulation environment
+## Step 2 — Download and start the simulation environment
 
-Docker uses an **image** (a package containing the software) to start a **container** (the running environment). You can either download an image someone has already built or build it yourself. **Choose one of the following methods:** Method 1 downloads the published prebuilt image and is the simplest option, Method 2 builds the image on your computer from the provided files.
+A Docker **image** is the software package; a **container** is a running instance of that image. Everyone uses the same published image, which includes ROS 2, Turtlesim, rosbridge, and TurtleBridge (MQTT ↔ ROS 2). **You do not need to install ROS 2, Java, or MQTT inside Docker.**
 
-### Method 1 — Download the Docker image
-
-Open Terminal or PowerShell and download the image from GitHub Container Registry:
+In Terminal (macOS/Linux) or PowerShell (Windows), download the image:
 
 ```bash
-docker pull ghcr.io/javiergs/ros2-turtlesim-desktop:latest
+docker pull ghcr.io/jgs-lab/turtlesim-docker-environment:latest
 ```
 
-Then start the container:
+Start the container using the command for your operating system.
 
-**macOS/Linux (Terminal):**
+**macOS/Linux:**
 
 ```bash
 docker run --rm -it \
@@ -96,10 +94,10 @@ docker run --rm -it \
   -e DISPLAY=:1 \
   -p 127.0.0.1:6080:6080 \
   -p 127.0.0.1:9090:9090 \
-  ghcr.io/javiergs/ros2-turtlesim-desktop:latest
+  ghcr.io/jgs-lab/turtlesim-docker-environment:latest
 ```
 
-**Windows (PowerShell):**
+**Windows PowerShell:**
 
 ```powershell
 docker run --rm -it `
@@ -107,58 +105,10 @@ docker run --rm -it `
   -e DISPLAY=:1 `
   -p 127.0.0.1:6080:6080 `
   -p 127.0.0.1:9090:9090 `
-  ghcr.io/javiergs/ros2-turtlesim-desktop:latest
+  ghcr.io/jgs-lab/turtlesim-docker-environment:latest
 ```
 
-The image is built and published by the repository's GitHub Actions workflow. **If the download reports that the image cannot be found or access is denied**, the publishing workflow may not have completed or the package may not yet be public. In that case, use Method 2. Keep the terminal open while the container runs.
-
-### Method 2 — Build the image from the provided Dockerfile
-
-**1. Download the files.** Download `Dockerfile`, `compose.yaml`, `supervisord.conf`, and `turtle4j-wallpaper.png` from this folder. Save all four files in the same directory on your computer.
-
-**2. Open a terminal in the folder where you saved the four files.** Navigate to that folder using `cd`, or open a terminal directly from the folder in your file manager. Make sure `Dockerfile` is in your current directory before continuing.
-
-**3. Build the image.** In that terminal, run:
-
-```bash
-docker build -t ros2-turtlesim-desktop:local .
-```
-
-The final `.` means “use the Dockerfile in the current folder.” Docker downloads and installs the required software. The first build may take several minutes or longer.
-
-**4. Start the container.** After the build finishes, run:
-
-**macOS/Linux (Terminal):**
-
-```bash
-docker run --rm -it \
-  --shm-size=1g \
-  -e DISPLAY=:1 \
-  -p 127.0.0.1:6080:6080 \
-  -p 127.0.0.1:9090:9090 \
-  ros2-turtlesim-desktop:local
-```
-
-**Windows (PowerShell):**
-
-```powershell
-docker run --rm -it `
-  --shm-size=1g `
-  -e DISPLAY=:1 `
-  -p 127.0.0.1:6080:6080 `
-  -p 127.0.0.1:9090:9090 `
-  ros2-turtlesim-desktop:local
-```
-
-Keep this terminal open while using the environment.
-
-**Alternative:** The provided `compose.yaml` can build and start the environment in one command. Instead of steps 3 and 4, run the following **from the same `docker` folder**:
-
-```bash
-docker compose up --build
-```
-
-Do **not** run both approaches at the same time; they use the same network ports.
+Keep the terminal open. Docker automatically starts rosbridge, the desktop services, and TurtleBridge. The MQTT bridge can remain running while you learn direct ROS 2 commands.
 
 ## Step 3 — Open the Linux desktop
 
@@ -178,19 +128,17 @@ Turtlesim is a simple ROS 2 program: it draws a turtle and moves it in response 
 
 ## Next steps
 
-To use MQTT instead of writing a Java application, see the [TurtleBridge simulator guide](../docs/turtlebridge.md). Its Docker image extends this desktop environment with a preinstalled MQTT ↔ ROS 2 bridge.
-
-
 You now have a running Linux desktop and Turtlesim simulator. **Keep the Docker container and Turtlesim running** while you continue:
 
 1. **[Understanding ROS 2: Nodes, Topics, and Messages](../docs/ros2-basics.md)** — open a terminal inside the Linux desktop, explore ROS 2 commands, and learn what the Keyboard Teleop 2D shortcut does.
-2. **[Getting Started with Turtle4J](../docs/getting-started.md)** — connect a Java application to the simulator through rosbridge at `ws://localhost:9090`.
+2. **[Getting Started with Turtle4J](../docs/getting-started.md)** — connect a Java application through rosbridge at `ws://localhost:9090`.
+3. **[MQTT with TurtleBridge](../docs/turtlebridge.md)** — use the same container to publish velocity commands and subscribe to turtle position.
 
 The browser address `http://localhost:6080/vnc.html` opens the Linux desktop. The WebSocket address `ws://localhost:9090` is for Java-to-ROS communication.
 
 ## Stop the environment
 
-Return to the terminal that started Docker and press **Ctrl+C**. If you used the Compose alternative, you can also run `docker compose down` from the `docker` folder. The `--rm` option in the other commands removes the stopped container, but keeps the downloaded or built image.
+Return to the terminal that started Docker and press **Ctrl+C**. The `--rm` option in the other commands removes the stopped container, but keeps the downloaded or built image.
 
 ## Troubleshooting
 
@@ -199,5 +147,5 @@ Return to the terminal that started Docker and press **Ctrl+C**. If you used the
 - **Port 6080 or 9090 already in use:** Stop the other application or container using that port.
 - **Browser desktop unavailable:** Check that Docker is running and that the startup terminal remains open.
 - **ROS 2 command does not move the turtle:** Start Turtlesim first, then run the command in a terminal inside the Linux desktop.
-- **Method 1 says image not found or access denied:** Check your network connection and the package's availability; Method 2 builds the image locally.
+- **Image not found or access denied:** Check the image spelling, network connection, and GitHub package visibility.
 
