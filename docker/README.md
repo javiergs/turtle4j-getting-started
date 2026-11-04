@@ -81,7 +81,7 @@ A Docker **image** is the software package; a **container** is a running instanc
 In Terminal (macOS/Linux) or PowerShell (Windows), download the image:
 
 ```bash
-docker pull ghcr.io/jgs-lab/turtlesim-docker-environment:latest
+docker pull ghcr.io/javiergs/turtlesim-docker-environment:latest
 ```
 
 Start the container using the command for your operating system.
@@ -94,7 +94,7 @@ docker run --rm -it \
   -e DISPLAY=:1 \
   -p 127.0.0.1:6080:6080 \
   -p 127.0.0.1:9090:9090 \
-  ghcr.io/jgs-lab/turtlesim-docker-environment:latest
+  ghcr.io/javiergs/turtlesim-docker-environment:latest
 ```
 
 **Windows PowerShell:**
@@ -105,7 +105,7 @@ docker run --rm -it `
   -e DISPLAY=:1 `
   -p 127.0.0.1:6080:6080 `
   -p 127.0.0.1:9090:9090 `
-  ghcr.io/jgs-lab/turtlesim-docker-environment:latest
+  ghcr.io/javiergs/turtlesim-docker-environment:latest
 ```
 
 Keep the terminal open. Docker automatically starts rosbridge, the desktop services, and TurtleBridge. The MQTT bridge can remain running while you learn direct ROS 2 commands.
