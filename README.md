@@ -1,83 +1,52 @@
 # Getting Started with Turtle4J
 
-![Java 21+](https://img.shields.io/badge/Java-21%2B-blue)
-![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-green)
-[![Java CI](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml/badge.svg)](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml)
+Resources for learning ROS 2 and developing Java applications that communicate with simulated and physical robots.
 
-Turtle4J is a Java library for communicating with ROS 2 systems, including TurtleBot 4 robots, through rosbridge WebSockets and MQTT messaging.
+This repository brings together four complementary resources. Start with a simulator if you do not have a robot, explore ROS 2 communication, and then build Java applications that can connect to a compatible ROS 2 system.
 
-<img width="80%" alt="685696458-5a4f43a3-5cac-453b-af49-83aa24428003" src="https://github.com/user-attachments/assets/7ffff468-7847-491a-85df-983a49607bb0" />
+![Turtle4J architecture](https://github.com/user-attachments/assets/7ffff468-7847-491a-85df-983a49607bb0)
 
-## Step 1. Choose your ROS 2 environment
+## 1. Need a ROS 2 simulator?
 
-Choose where your ROS 2 system will run:
+The **Turtlesim Docker Environment** provides Ubuntu 22.04, ROS 2 Humble, Turtlesim 2D, rosbridge, a browser-accessible Linux desktop, and TurtleBridge for MQTT communication. You do not need a physical robot or a separate ROS 2 installation.
 
-### Option A — Turtlesim 2D in Docker (recommended for beginners)
-
-Run one Docker image containing ROS 2 Humble, Turtlesim, rosbridge, and the MQTT ↔ ROS 2 bridge, without a physical robot. Follow the [Docker setup tutorial](docker/README.md).
-
-**Rosbridge WebSocket address:**
+**Docker package:**
 
 ```text
-ws://localhost:9090
+ghcr.io/javiergs/turtlesim-docker-environment:latest
 ```
 
-### Option B — Physical TurtleBot 4
+**[Set up the Docker simulator](docker/README.md)**
 
-Connect to a ROS 2 computer running rosbridge on your robot's network. Follow the [physical robot setup guide](docs/turtlebot4-setup.md).
+Turtlesim is a simple 2D teaching simulator, not a full TurtleBot 4 simulator. You can later connect to a physical ROS 2 robot instead.
 
-**Rosbridge WebSocket address:**
+## 2. Want to learn ROS 2?
 
-```text
-ws://<ROSBRIDGE_HOST_IP>:9090
-```
+Learn about **nodes, topics, and messages**, and practice ROS 2 terminal commands for discovering, publishing, and subscribing to topics.
 
-## Step 2. Understand ROS 2
+**[Learn ROS 2 fundamentals](docs/ros2-basics.md)**
 
-If you are new to ROS 2, complete [Understanding ROS 2: Nodes, Topics, and Messages](docs/ros2-basics.md). You will explore nodes and topics, observe turtle position messages, and send movement commands from a terminal.
+## 3. Want to develop Java applications?
 
-## Step 3. Using Turtle4J in your project
+**Turtle4J** is a Java library for communicating with ROS 2 systems through **rosbridge WebSockets** and **MQTT**. Start by connecting to Turtlesim, then adapt your application to the topics and capabilities of a physical robot such as TurtleBot 4.
 
-To run the Java examples, install **Java 21 or newer** and **Maven** on your computer. You can verify both installations with `java -version` and `mvn -version`. These tools are not required for the Docker and ROS 2 tutorials above.
+**Maven dependency:** `com.javiergs:turtle4j:1.1.0`
 
-Follow the [Java Getting Started guide](docs/getting-started.md) to run your first example and connect Java to ROS 2 through rosbridge. The guide contains the commands, expected results, and setup details.
+**[Get started with the Turtle4J Java library](docs/getting-started.md)**
 
-Turtle4J 1.1.0 is available on Maven Central. To use the library in your own Maven project, add:
+For runnable code, see the [Java examples](docs/examples.md), [API overview](docs/api-reference.md), and [Turtle4J 1.1.0 JavaDoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.1.0/).
 
-```xml
-<dependency>
-    <groupId>com.javiergs</groupId>
-    <artifactId>turtle4j</artifactId>
-    <version>1.1.0</version>
-</dependency>
-```
+## 4. Need MQTT communication with ROS 2?
 
-The runnable examples in this repository already include the dependency.
+**TurtleBridge** is our MQTT ↔ ROS 2 bridge application. It connects MQTT messages to ROS 2 topics through rosbridge, enabling commands and telemetry without requiring MQTT support in ROS 2 itself.
 
-## TurtleBridge — MQTT ↔ ROS 2 application
+TurtleBridge is **already included in the Docker simulator**. A standalone executable for deployment on a TurtleBot 4's Raspberry Pi is **planned, not yet released**. A physical robot will need a running MQTT-to-ROS 2 bridge for this communication path; direct rosbridge connections do not require TurtleBridge.
 
-[TurtleBridge MQTT tutorial](docs/turtlebridge.md) — use the **same Docker environment** to publish movement commands and receive pose telemetry over MQTT without writing Java.
+**[Learn about TurtleBridge and MQTT](docs/turtlebridge.md)**
 
-## Examples
+## Additional resources
 
-Ten ROS 2 examples cover connection, discovery, pose monitoring, velocity control, keyboard teleoperation, and feedback-based motion. See the [Java examples guide](docs/examples.md). MQTT examples are introduced separately after the ROS 2 exercises.
-
-## API documentation
-
-- [Turtle4J 1.1.0 JavaDoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.1.0/) — published release
-- [Development JavaDoc](https://javiergs.github.io/turtle4j-getting-started/javadoc/development/) — evolving API documentation
-
-## Additional guides
-
-- [Developing New Functionality with Turtle4J](docs/extending-turtle4j.md) — design, implement, and test independent Java experiments.
-- [ROS 2 runtime discovery](docs/ros2-discovery.md) — inspect capabilities and troubleshoot discovery.
-- [API overview](docs/api-reference.md) — learn the library's Java API.
-- [MQTT publish/subscribe](docs/mqtt-example.md) — experiment with independent MQTT messaging.
-
-## Troubleshooting
-
-- **Connection refused:** Confirm the ROS 2 system and rosbridge are running and port `9090` is reachable.
-- **Wrong host:** For a remote ROS 2 system, `localhost` refers to the computer running Java, not the robot.
-- **No pose or scan messages:** Verify the topic exists and the simulator or robot publishes that topic.
-- **Build failure:** Check `mvn -version` for Java 21 and Maven dependency access.
-
+- [Physical TurtleBot 4 setup](docs/turtlebot4-setup.md)
+- [ROS 2 runtime discovery](docs/ros2-discovery.md)
+- [Developing new functionality with Turtle4J](docs/extending-turtle4j.md)
+- [MQTT publish/subscribe examples](docs/mqtt-example.md)
