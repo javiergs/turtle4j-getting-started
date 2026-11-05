@@ -170,7 +170,7 @@ You can still use the **same running container** for [direct Java/Turtle4J commu
 
 ## Part B — Install the standalone bridge (Java 21)
 
-### 8. Standalone JAR installation and verification
+## 8. Standalone JAR installation (Java 21)
 
 The [turtle4j-mqtt-bridge v0.1.0 release](https://github.com/javiergs/turtle4j-getting-started/releases/tag/bridge-v0.1.0) provides a standalone executable JAR. It is **built with Java 21** and is intended to be usable on Linux ARM64 computers, including the Raspberry Pi used by TurtleBot 4. **ARM64 operation has not yet been tested on a physical TurtleBot 4**; this is a student validation exercise, not a compatibility certification.
 
