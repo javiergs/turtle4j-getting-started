@@ -2,11 +2,16 @@
 
 **Why a bridge?** MQTT broker topics and ROS 2 topics are separate communication systems. **turtle4j-mqtt-bridge** forwards selected MQTT messages to ROS 2 through rosbridge and forwards selected ROS 2 messages back to MQTT subscribers.
 
-This guide explains how to **use** the bridge with Turtlesim: configuration, MQTT topics, commands, and telemetry. The bridge is **already installed** in the [Turtlesim Docker environment](../docker/README.md), so you do not need to install it separately.
+## Choose your environment
 
-To run the executable outside Docker, follow the [standalone installation guide](turtlebridge-installation.md), which includes download, checksum verification, and Raspberry Pi startup checks.
+| What you have | What you can try |
+| --- | --- |
+| **Docker + Turtlesim** | The bridge is **already installed**. Follow [Part A](#part-a--use-the-bridge-with-turtlesim) to send MQTT movement commands to the simulated turtle and receive pose telemetry. |
+| **Physical TurtleBot 4** | Follow the [standalone installation guide](turtlebridge-installation.md) to check the executable on your Raspberry Pi, then follow [Part B](#part-b--explore-read-only-robot-telemetry-experimental) to discover topics and attempt a **read-only** MQTT telemetry experiment. |
 
-**Current limitations:** Version 0.1.0 supports Turtlesim topics only. Running the JAR on a TurtleBot 4 Raspberry Pi is an installation/compatibility test, **not** physical robot integration. Physical TurtleBot 4 communication and motion are not supported by this release.
+**Current status (v0.1.0):** Turtlesim movement and pose forwarding are supported. The standalone JAR is built for Java 21; Raspberry Pi ARM64 runtime and physical TurtleBot 4 telemetry have **not yet been validated**. The bridge rejects physical-robot motion mappings. Do not attempt to drive a physical robot with this release.
+
+## Part A — Use the bridge with Turtlesim
 
 ## 1. Start the environment
 
@@ -88,7 +93,7 @@ turtle4j/sim/12345678-1234-1234-1234-123456789abc/turtle1/cmd_vel
 | `cmd_vel` | Velocity **commands** sent to the turtle. |
 | `pose` | Position/orientation **telemetry** sent from the turtle. |
 
-The direction matters: a student **publishes** to `cmd_vel` to move the turtle and **subscribes** to `pose` to observe it.
+The direction matters: you **publish** to `cmd_vel` to move the turtle and **subscribes** to `pose` to observe it.
 
 ## 4. Understand the velocity message
 
@@ -162,6 +167,81 @@ Turtlesim /turtle1/pose
 ```
 
 You can still use the **same running container** for [direct Java/Turtle4J communication](getting-started.md) through `ws://localhost:9090`. MQTT is an alternative communication path, not a separate simulator.
+
+## Part B — Explore read-only robot telemetry (experimental)
+
+This section is an **unverified experiment**, not a tested TurtleBot 4 integration. You can attempt to forward a robot's ROS 2 messages to MQTT using the existing generic `ros_to_mqtt` mapping. Do **not** configure any `mqtt_to_ros` topics for a physical robot.
+
+### 1. Check the standalone executable
+
+Follow the [standalone installation and verification guide](turtlebridge-installation.md). Verify the JAR checksum, Java runtime, and `--help` output before proceeding. Installing the JAR on the Raspberry Pi does not by itself connect it to ROS 2.
+
+### 2. Discover available robot topics
+
+On a trusted computer connected to the robot's ROS 2 network, with the correct ROS 2 environment sourced, run:
+
+```bash
+ros2 topic list
+ros2 topic list -t
+```
+
+Look for an odometry topic (often `/odom`, but the actual name may be namespaced). If found, inspect its message type and sample data:
+
+```bash
+ros2 topic info /odom
+ros2 topic echo /odom --once
+```
+
+Replace `/odom` with the actual discovered topic. Do not assume any particular topic is present.
+
+### 3. Confirm rosbridge access
+
+The bridge connects to a **rosbridge WebSocket server**, which may run on the robot or another ROS 2 computer. It is not guaranteed to be installed on TurtleBot 4. Follow the [physical TurtleBot 4 connection guide](turtlebot4-setup.md) to set it up on a trusted network. Record the reachable WebSocket address, such as `ws://ROSBRIDGE_HOST:9090`; do not expose rosbridge to the public Internet.
+
+### 4. Prepare a read-only configuration
+
+Create a separate configuration file on the computer where the standalone JAR will run. This example assumes the robot publishes `/odom` as `nav_msgs/msg/Odometry`—**verify both values first**:
+
+```json
+{
+  "rosbridgeUrl": "ws://ROSBRIDGE_HOST:9090",
+  "mqttBroker": "tcp://broker.hivemq.com:1883",
+  "mqttPrefix": "turtle4j/robot/REPLACE_WITH_UNIQUE_ID",
+  "commandTimeoutMs": 750,
+  "maxLinearSpeed": 1,
+  "maxAngularSpeed": 1,
+  "topics": [
+    {
+      "ros": "/odom",
+      "type": "nav_msgs/msg/Odometry",
+      "direction": "ros_to_mqtt"
+    }
+  ]
+}
+```
+
+Replace `ROSBRIDGE_HOST` and `REPLACE_WITH_UNIQUE_ID` with your own values; the prefix must be unique. This example uses a **public MQTT broker**, so do not forward sensitive telemetry, identifying data, or private network information. Prefer a private, access-controlled broker for actual robot deployments. The speed settings are required by v0.1.0 configuration validation but do not enable motion without an `mqtt_to_ros` mapping.
+
+### 5. Start the bridge and observe MQTT
+
+Save the JSON above as `robot-readonly.json` in the same directory as the downloaded JAR. From that directory, run:
+
+```bash
+java -jar turtle4j-mqtt-bridge-0.1.0.jar --config robot-readonly.json
+```
+
+In another terminal with Mosquitto clients installed, subscribe to the matching MQTT topic:
+
+```bash
+mosquitto_sub -h broker.hivemq.com -p 1883 \
+  -t "turtle4j/robot/REPLACE_WITH_UNIQUE_ID/odom" -v
+```
+
+If the robot's topic has a namespace, the MQTT suffix follows the discovered ROS 2 topic name without its initial slash. Successful output would demonstrate **read-only forwarding** of that topic, not general TurtleBot 4 support. If no messages arrive, verify the ROS topic name and type, rosbridge reachability, and the bridge's console output. Stop with **Ctrl+C**.
+
+### 6. Report the results
+
+Record the Raspberry Pi architecture and operating system, Java version, discovered ROS topic and type, rosbridge host location (without credentials), bridge startup messages, and whether MQTT telemetry arrived. Do not attempt motion control; report errors rather than bypassing the restrictions.
 
 ## Troubleshooting and safety
 
