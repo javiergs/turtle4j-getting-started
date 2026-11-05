@@ -2,16 +2,11 @@
 
 **Why a bridge?** MQTT broker topics and ROS 2 topics are separate communication systems. **turtle4j-mqtt-bridge** forwards selected MQTT messages to ROS 2 through rosbridge and forwards selected ROS 2 messages back to MQTT subscribers.
 
-This guide covers two ways to use the bridge:
+This guide explains how to **use** the bridge with Turtlesim: configuration, MQTT topics, commands, and telemetry. The bridge is **already installed** in the [Turtlesim Docker environment](../docker/README.md), so you do not need to install it separately.
 
-1. **Turtlesim with Docker:** Use the bridge already included in the [Turtlesim Docker environment](../docker/README.md) to send simulated movement commands and receive pose telemetry.
-2. **Standalone executable:** Download and check the [v0.1.0 JAR](https://github.com/javiergs/turtle4j-getting-started/releases/tag/bridge-v0.1.0), including a startup check on a Raspberry Pi ARM64 device.
+To run the executable outside Docker, follow the [standalone installation guide](turtlebridge-installation.md), which includes download, checksum verification, and Raspberry Pi startup checks.
 
 **Current limitations:** Version 0.1.0 supports Turtlesim topics only. Running the JAR on a TurtleBot 4 Raspberry Pi is an installation/compatibility test, **not** physical robot integration. Physical TurtleBot 4 communication and motion are not supported by this release.
-
-## Part A — Use the bridge with Turtlesim (Docker)
-
-The bridge starts automatically in the Docker environment. No separate JAR installation is required for this part.
 
 ## 1. Start the environment
 
@@ -167,64 +162,6 @@ Turtlesim /turtle1/pose
 ```
 
 You can still use the **same running container** for [direct Java/Turtle4J communication](getting-started.md) through `ws://localhost:9090`. MQTT is an alternative communication path, not a separate simulator.
-
-## Part B — Install the standalone bridge
-
-## 8. Standalone JAR installation
-
-The [turtle4j-mqtt-bridge v0.1.0 release](https://github.com/javiergs/turtle4j-getting-started/releases/tag/bridge-v0.1.0) provides a standalone executable JAR. It is **built with Java 21** and is intended to be usable on Linux ARM64 computers, including the Raspberry Pi used by TurtleBot 4. **ARM64 operation has not yet been tested on a physical TurtleBot 4**; this is a compatibility validation exercise, not a compatibility certification.
-
-**Important:** v0.1.0 supports the **Turtlesim** topics `/turtle1/cmd_vel` and `/turtle1/pose`. It is **not** a physical TurtleBot 4 control application. Do not configure it to drive the robot, and do not forward velocity commands to physical robot topics.
-
-### A. Inspect the Raspberry Pi (do this first)
-
-Connect to the Raspberry Pi over SSH using the hostname and account supplied by your team. On **the Pi**, run:
-
-```bash
-uname -m
-cat /etc/os-release
-java -version
-```
-
-Record the full output. `aarch64` indicates 64-bit ARM Linux. If Java is missing or its major version is not 21, **stop and report the results** before installing software: the correct installation procedure depends on the operating system and configured repositories.
-
-### B. Download the binary (after Java 21 is available)
-
-On the Raspberry Pi, create a working directory and download the public release:
-
-```bash
-mkdir -p ~/turtle4j-mqtt-bridge
-cd ~/turtle4j-mqtt-bridge
-curl -fL -O https://github.com/javiergs/turtle4j-getting-started/releases/download/bridge-v0.1.0/turtle4j-mqtt-bridge-0.1.0.jar
-curl -fL -O https://github.com/javiergs/turtle4j-getting-started/releases/download/bridge-v0.1.0/SHA256SUMS
-sha256sum -c SHA256SUMS
-```
-
-The checksum check must report `OK`. If it fails, do not run the JAR.
-
-### C. Check that the JAR starts
-
-```bash
-java -jar turtle4j-mqtt-bridge-0.1.0.jar --help
-```
-
-The help text should show `Usage:`. This checks Java startup only; it does **not** establish a connection to ROS 2 or prove compatibility with TurtleBot 4.
-
-### D. Inspect ROS 2 connectivity without moving the robot
-
-Identify a **trusted ROS 2 host** with rosbridge running and reachable from the Pi. rosbridge is not necessarily installed on the Pi by default. The existing [physical TurtleBot 4 connection guide](turtlebot4-setup.md) explains how to set up rosbridge.
-
-For this first validation, **do not run the bridge against physical robot topics**. Instead, record:
-
-```bash
-uname -m
-java -version
-java -jar ~/turtle4j-mqtt-bridge/turtle4j-mqtt-bridge-0.1.0.jar --help
-```
-
-Record the operating system, Java version, whether checksum verification succeeded, the complete startup result, and whether rosbridge is available. Do not include passwords, tokens, or private network credentials in the report.
-
-**What this release does not establish:** Passing the steps above demonstrates that the JAR starts on your Raspberry Pi. It does not demonstrate that the current Turtlesim-only bridge supports TurtleBot 4 ROS 2 topics, telemetry, or motion. Those require a separately reviewed implementation and supervised tests.
 
 ## Troubleshooting and safety
 
