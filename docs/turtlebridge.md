@@ -1,8 +1,17 @@
-# TurtleBridge — MQTT ↔ ROS 2 with Turtlesim
+# turtle4j-mqtt-bridge — MQTT ↔ ROS 2
 
-**Why a bridge?** Turtle4J can publish and subscribe using MQTT, but MQTT broker topics are not ROS 2 topics. A message sent to an MQTT broker does not reach a ROS 2 node by itself. TurtleBridge forwards messages between these systems using rosbridge: for example, an MQTT velocity command reaches ROS 2 `/turtle1/cmd_vel`, and ROS 2 pose telemetry can be forwarded back to MQTT subscribers.
+**Why a bridge?** MQTT broker topics and ROS 2 topics are separate communication systems. **turtle4j-mqtt-bridge** forwards selected MQTT messages to ROS 2 through rosbridge and forwards selected ROS 2 messages back to MQTT subscribers.
 
-TurtleBridge is a bridge between an **MQTT broker** and **ROS 2**. It runs automatically in the same [Turtlesim Docker environment](../docker/README.md) used for direct ROS 2 and Turtle4J lessons. You do **not** need another Docker image or a separate TurtleBridge installation.
+This guide covers two ways to use the bridge:
+
+1. **Turtlesim with Docker:** Use the bridge already included in the [Turtlesim Docker environment](../docker/README.md) to send simulated movement commands and receive pose telemetry.
+2. **Standalone Java 21 executable:** Download and check the [v0.1.0 JAR](https://github.com/javiergs/turtle4j-getting-started/releases/tag/bridge-v0.1.0), including a startup check on a Raspberry Pi ARM64 device.
+
+**Current limitations:** Version 0.1.0 supports Turtlesim topics only. Running the JAR on a TurtleBot 4 Raspberry Pi is an installation/compatibility test, **not** physical robot integration. Physical TurtleBot 4 communication and motion are not supported by this release.
+
+## Part A — Use the bridge with Turtlesim (Docker)
+
+The bridge starts automatically in the Docker environment. No separate JAR installation is required for this part.
 
 ## 1. Start the environment
 
@@ -159,7 +168,9 @@ Turtlesim /turtle1/pose
 
 You can still use the **same running container** for [direct Java/Turtle4J communication](getting-started.md) through `ws://localhost:9090`. MQTT is an alternative communication path, not a separate simulator.
 
-## 8. Standalone JAR installation (Java 21)
+## Part B — Install the standalone bridge (Java 21)
+
+### 8. Standalone JAR installation and verification
 
 The [turtle4j-mqtt-bridge v0.1.0 release](https://github.com/javiergs/turtle4j-getting-started/releases/tag/bridge-v0.1.0) provides a standalone executable JAR. It is **built with Java 21** and is intended to be usable on Linux ARM64 computers, including the Raspberry Pi used by TurtleBot 4. **ARM64 operation has not yet been tested on a physical TurtleBot 4**; this is a student validation exercise, not a compatibility certification.
 
