@@ -48,7 +48,7 @@ For runnable code, see the [Java examples](docs/examples.md), [API overview](doc
 
 **turtle4j supports MQTT** publishing and subscribing. However, ROS 2 nodes do not automatically receive messages published to an MQTT broker. **turtle4j-mqtt-bridge** connects the two systems: it forwards MQTT commands to ROS 2 topics through rosbridge and publishes ROS 2 telemetry back to MQTT. This allows Java applications to use MQTT to communicate with a simulator or robot that exposes ROS 2 interfaces.
 
-turtle4j-mqtt-bridge is **already included in the Docker simulator**. A standalone executable for deployment on a TurtleBot 4's Raspberry Pi is **planned, not yet released**. A physical robot will need a running MQTT-to-ROS 2 bridge for this communication path; direct rosbridge connections do not require TurtleBridge.
+turtle4j-mqtt-bridge is **already included in the Docker simulator**. The [standalone v0.1.0 executable JAR](https://github.com/javiergs/turtle4j-getting-started/releases/tag/bridge-v0.1.0) is now available for Java 21. It is intended for Linux ARM64 systems such as the Raspberry Pi used by TurtleBot 4, but **physical-device compatibility has not yet been verified**. The current bridge supports **Turtlesim only**, not physical TurtleBot 4 movement. Students can follow the [Raspberry Pi installation and verification steps](docs/turtlebridge.md#8-standalone-jar-installation-java-21). A physical robot will need a validated MQTT-to-ROS 2 bridge for this communication path; direct rosbridge connections do not require TurtleBridge.
 
 **[Learn about turtle4j-mqtt-bridge and MQTT](docs/turtlebridge.md)**
 
