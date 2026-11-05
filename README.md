@@ -52,7 +52,7 @@ For runnable code, see the [Java examples](docs/examples.md), [API overview](doc
 
 The bridge is included in the [Turtlesim Docker environment](docker/README.md), so no additional installation is required when using the simulator.
 
-It is also available as a [standalone Java 21 executable (v0.1.0)](https://github.com/javiergs/turtle4j-getting-started/releases/tag/bridge-v0.1.0). The standalone application is designed to run on Java 21-compatible systems, including Linux ARM64 devices such as the Raspberry Pi used by TurtleBot 4. You can follow the [standalone installation and verification guide](docs/turtlebridge.md#8-standalone-jar-installation) to test the executable on your device.
+It is also available as a [standalone Java 21 executable (v0.1.0)](https://github.com/javiergs/turtle4j-getting-started/releases/tag/bridge-v0.1.0). The standalone application is designed to run on Java 21-compatible systems, including Linux ARM64 devices such as the Raspberry Pi used by TurtleBot 4. You can follow the [standalone installation and verification guide](docs/turtlebridge-installation.md) to test the executable on your device.
 
 **Current status:** Version 0.1.0 supports Turtlesim. Raspberry Pi ARM64 compatibility is pending validation, and physical TurtleBot 4 communication is not yet supported.
 
