@@ -4,8 +4,6 @@ Turtle4J is a Java 21 library for communicating with ROS 2 systems through a ros
 
 This repository provides four complementary resources: a **Docker-based simulator** for experimenting without physical hardware, an introduction to **ROS 2 fundamentals**, the **turtle4j Java library** for communicating with ROS 2 systems, and **turtle4j-mqtt-bridge** for connecting MQTT applications to ROS 2.
 
-<img width="1024" height="683" alt="52FFEAEF-2B1E-4823-935F-09867AA85373" src="https://github.com/user-attachments/assets/5da71059-2a81-4381-b8d0-fbd3ca0cbdc1" />
-
 ![Architecture](assets/turtle4j-architecture.png)
 
 ## 1. Need a ROS 2 simulator?
