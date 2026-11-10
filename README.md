@@ -62,3 +62,9 @@ It is also available as a [standalone Java 21 executable (v0.1.0)](https://githu
 - [ROS 2 runtime discovery](docs/ros2-discovery.md)
 - [Developing new functionality with Turtle4J](docs/extending-turtle4j.md)
 - [MQTT publish/subscribe examples](docs/mqtt-example.md)
+
+## Feedback
+
+[Open an issue](https://github.com/javiergs/turtle4j-getting-started/issues/new/choose) to report an example bug, suggest a feature, or flag unclear documentation.
+
+For bugs, include the example or guide section, the command you ran, and what you expected and observed. Include your operating system and Java and Maven versions when relevant. For integration problems, include your ROS 2 distribution and the simulator or hardware you used.
