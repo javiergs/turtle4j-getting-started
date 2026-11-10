@@ -6,6 +6,8 @@ This repository provides four complementary resources: a **Docker-based simulato
 
 <img width="1024" height="683" alt="52FFEAEF-2B1E-4823-935F-09867AA85373" src="https://github.com/user-attachments/assets/5da71059-2a81-4381-b8d0-fbd3ca0cbdc1" />
 
+![Architecture](assets/turtle4j-architecture.png)
+
 ## 1. Need a ROS 2 simulator?
 
 The **Turtlesim Docker Environment** provides Ubuntu 22.04, ROS 2 Humble, Turtlesim 2D, rosbridge, a browser-accessible Linux desktop, and turtle4j-mqtt-bridge for MQTT communication. You do not need a physical robot or a separate ROS 2 installation.
