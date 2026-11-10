@@ -2,7 +2,7 @@
 
 This tutorial uses Docker to create a virtual Linux desktop running Ubuntu 22.04 and ROS 2 Humble. The environment includes Turtlesim (a simple 2D robot simulator), rosbridge (for Turtle4J Java WebSocket connections), and TurtleBridge (for MQTT communication). You can access the Linux desktop directly from your web browser using noVNC.
 
-<img width="80%" alt="turtle docker" src="https://github.com/user-attachments/assets/5d739a90-be13-4c90-a975-5be11e8bd5e7" />
+![Docker Environment with TurtleSim, RosBridge and MQTT Bridge](assets/docker-environment.png)
 
 ## Step 1 — Install and start Docker
 
