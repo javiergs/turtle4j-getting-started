@@ -4,6 +4,9 @@ This tutorial uses Docker to create a virtual Linux desktop running Ubuntu 22.04
 
 ![Docker Environment with TurtleSim, RosBridge and MQTT Bridge](assets/docker-environment.png)
 
+![Architecture](assets/turtle4j-architecture.png)
+
+
 ## Step 1 — Install and start Docker
 
 Docker runs the simulation environment on your computer. You only need to install it once.
