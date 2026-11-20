@@ -46,7 +46,7 @@ For runnable code, see the [Java examples](docs/examples.md), [API overview](doc
 
 ## 4. Need MQTT communication with ROS 2?
 
-**turtle4j** supports MQTT publishing and subscribing, but ROS 2 nodes cannot directly receive messages from an MQTT broker. **turtle4j-mqtt-bridge** connects these systems through rosbridge, forwarding MQTT commands to ROS 2 topics and publishing ROS 2 telemetry to MQTT subscribers.
+**turtle4j** supports MQTT publishing and subscribing, but ROS 2 nodes cannot directly receive messages from an MQTT broker. **turtle4j-mqtt-bridge** connects these systems through rosbridge, forwarding MQTT commands to simulated Turtlesim and publishing ROS 2 telemetry to MQTT subscribers.
 
 **[Learn about turtle4j-mqtt-bridge and MQTT](docs/turtlebridge.md)**
 
@@ -54,7 +54,7 @@ The bridge is included in the [Turtlesim Docker environment](docker/README.md), 
 
 It is also available as a [standalone Java 21 executable (v0.1.0)](https://github.com/javiergs/turtle4j-getting-started/releases/tag/bridge-v0.1.0). The standalone application is designed to run on Java 21-compatible systems, including Linux ARM64 devices such as the Raspberry Pi used by TurtleBot 4. You can follow the [standalone installation and verification guide](docs/turtlebridge-installation.md) to test the executable on your device.
 
-**Current status:** Version 0.1.0 supports Turtlesim. Raspberry Pi ARM64 compatibility is pending validation, and physical TurtleBot 4 communication is not yet supported.
+**Current status.** The standalone v0.1.0 JAR ran directly on a physical TurtleBot 4 Raspberry Pi (ARM64 `aarch64`, Ubuntu 24.04.4 LTS, OpenJDK 21, ROS 2 Jazzy). It forwarded `/battery_state` (`sensor_msgs/msg/BatteryState`) through local rosbridge to a remote MQTT subscriber. Odometry, LiDAR, and IMU forwarding remain unvalidated. Use only `ros_to_mqtt` mappings on physical robots. Physical-robot `mqtt_to_ros` mappings are prohibited. The v0.1.0 command path is limited to simulated Turtlesim.
 
 ## Additional resources
 
