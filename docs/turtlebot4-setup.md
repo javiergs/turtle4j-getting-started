@@ -6,11 +6,11 @@ This guide is for connecting a Java application using Turtle4J to an existing ph
 
 You need a configured TurtleBot 4 and access to a ROS 2 computer on its network. The computer hosting **rosbridge** may be the robot's computer or another ROS 2 computer able to communicate with the robot. Do not assume rosbridge is installed or running by default.
 
-Confirm the ROS 2 distribution, network connectivity, and relevant robot topics using your TurtleBot 4 setup documentation. The commands below assume **ROS 2 Humble on Ubuntu**.
+Confirm the ROS 2 distribution, network connectivity, and relevant robot topics using your TurtleBot 4 setup documentation. Use the commands for the ROS 2 distribution on the rosbridge host.
 
 ## Install and start rosbridge
 
-On the ROS 2 computer that will host rosbridge:
+On the rosbridge host, install the package for your distribution and source its environment. For **ROS 2 Humble**:
 
 ```bash
 sudo apt update
@@ -19,7 +19,20 @@ source /opt/ros/humble/setup.bash
 ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 ```
 
+For **ROS 2 Jazzy on Ubuntu 24.04**:
+
+```bash
+sudo apt update
+sudo apt install ros-jazzy-rosbridge-suite
+source /opt/ros/jazzy/setup.bash
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+```
+
 Keep the server running. The default WebSocket port is `9090`. Ensure your Java computer can reach the host over the network. Do not expose rosbridge to untrusted networks.
+
+## Forward read-only telemetry over MQTT
+
+The standalone v0.1.0 JAR ran directly on a physical TurtleBot 4 Raspberry Pi (ARM64 `aarch64`, Ubuntu 24.04.4 LTS, OpenJDK 21, ROS 2 Jazzy). It forwarded `/battery_state` (`sensor_msgs/msg/BatteryState`) through local rosbridge to a remote MQTT subscriber. Odometry, LiDAR, and IMU forwarding remain unvalidated. Use only `ros_to_mqtt` mappings on physical robots. Physical-robot `mqtt_to_ros` mappings are prohibited. The v0.1.0 command path is limited to simulated Turtlesim. See the [read-only telemetry procedure](turtlebridge.md#part-b--explore-read-only-robot-telemetry-experimental).
 
 ## Connect from Java
 
