@@ -7,9 +7,9 @@
 | What you have | What you can try |
 | --- | --- |
 | **Docker + Turtlesim** | The bridge is **already installed**. Follow [Part A](#part-a--use-the-bridge-with-turtlesim) to send MQTT movement commands to the simulated turtle and receive pose telemetry. |
-| **Physical TurtleBot 4** | Follow the [standalone installation guide](turtlebridge-installation.md) to check the executable on your Raspberry Pi, then follow [Part B](#part-b--explore-read-only-robot-telemetry-experimental) to discover topics and attempt a **read-only** MQTT telemetry experiment. |
+| **Physical TurtleBot 4** | Follow the [standalone installation guide](turtlebridge-installation.md) to check the executable on your Raspberry Pi, then follow [Part B](#part-b--explore-read-only-robot-telemetry-experimental) to reproduce battery forwarding or test additional read-only topics. |
 
-**Current status (v0.1.0):** Turtlesim movement and pose forwarding are supported. The standalone JAR is built for Java 21; Raspberry Pi ARM64 runtime and physical TurtleBot 4 telemetry have **not yet been validated**. The bridge rejects physical-robot motion mappings. Do not attempt to drive a physical robot with this release.
+**Current status.** Turtlesim supports movement and pose forwarding. The standalone v0.1.0 JAR ran directly on a physical TurtleBot 4 Raspberry Pi (ARM64 `aarch64`, Ubuntu 24.04.4 LTS, OpenJDK 21, ROS 2 Jazzy). It forwarded `/battery_state` (`sensor_msgs/msg/BatteryState`) through local rosbridge to a remote MQTT subscriber. Odometry, LiDAR, and IMU forwarding remain unvalidated. Use only `ros_to_mqtt` mappings on physical robots. Physical-robot `mqtt_to_ros` mappings are prohibited. The v0.1.0 command path is limited to simulated Turtlesim.
 
 ## Part A — Use the bridge with Turtlesim
 
@@ -170,7 +170,7 @@ You can still use the **same running container** for [direct Java/Turtle4J commu
 
 ## Part B — Explore read-only robot telemetry (experimental)
 
-This section is an **unverified experiment**, not a tested TurtleBot 4 integration. You can attempt to forward a robot's ROS 2 messages to MQTT using the existing generic `ros_to_mqtt` mapping. Do **not** configure any `mqtt_to_ros` topics for a physical robot.
+The hardware test received repeated battery JSON messages on a remote Mac using `mosquitto_sub`, including voltage, temperature, and charge percentage. The test discovered `/imu` in ROS 2 and left MQTT forwarding of it untested. The JAR also rejected an attempted `mqtt_to_ros` string mapping on the physical robot.
 
 ### 1. Check the standalone executable
 
@@ -185,14 +185,21 @@ ros2 topic list
 ros2 topic list -t
 ```
 
-Look for an odometry topic (often `/odom`, but the actual name may be namespaced). If found, inspect its message type and sample data:
+Discover the full topic name and type before configuring the bridge. Topic names may be namespaced.
+
+| Telemetry | Example ROS 2 topic | Message type | Physical robot forwarding |
+| --- | --- | --- | --- |
+| Battery | `/battery_state` | `sensor_msgs/msg/BatteryState` | Validated |
+| Odometry | `/odom` | `nav_msgs/msg/Odometry` | Unvalidated |
+| LiDAR | `/scan` | `sensor_msgs/msg/LaserScan` | Unvalidated |
+| IMU | `/imu` | `sensor_msgs/msg/Imu` | Unvalidated |
+
+Inspect the selected topic and capture a reference message. Substitute its discovered name if it differs from the example.
 
 ```bash
-ros2 topic info /odom
-ros2 topic echo /odom --once
+ros2 topic info /battery_state
+ros2 topic echo /battery_state --once
 ```
-
-Replace `/odom` with the actual discovered topic. Do not assume any particular topic is present.
 
 ### 3. Confirm rosbridge access
 
@@ -200,27 +207,27 @@ The bridge connects to a **rosbridge WebSocket server**, which may run on the ro
 
 ### 4. Prepare a read-only configuration
 
-Create a separate configuration file on the computer where the standalone JAR will run. This example assumes the robot publishes `/odom` as `nav_msgs/msg/Odometry`—**verify both values first**:
+Create a separate configuration file on the computer where the standalone JAR will run. Start with `/battery_state` as `sensor_msgs/msg/BatteryState` and verify both values on your robot. Use `localhost` for `ROSBRIDGE_HOST` when rosbridge and the JAR run on the robot.
 
 ```json
 {
   "rosbridgeUrl": "ws://ROSBRIDGE_HOST:9090",
-  "mqttBroker": "tcp://broker.hivemq.com:1883",
+  "mqttBroker": "tcp://MQTT_BROKER_HOST:1883",
   "mqttPrefix": "turtle4j/robot/REPLACE_WITH_UNIQUE_ID",
   "commandTimeoutMs": 750,
   "maxLinearSpeed": 1,
   "maxAngularSpeed": 1,
   "topics": [
     {
-      "ros": "/odom",
-      "type": "nav_msgs/msg/Odometry",
+      "ros": "/battery_state",
+      "type": "sensor_msgs/msg/BatteryState",
       "direction": "ros_to_mqtt"
     }
   ]
 }
 ```
 
-Replace `ROSBRIDGE_HOST` and `REPLACE_WITH_UNIQUE_ID` with your own values; the prefix must be unique. This example uses a **public MQTT broker**, so do not forward sensitive telemetry, identifying data, or private network information. Prefer a private, access-controlled broker for actual robot deployments. The speed settings are required by v0.1.0 configuration validation but do not enable motion without an `mqtt_to_ros` mapping.
+Set `ROSBRIDGE_HOST` and `MQTT_BROKER_HOST` to the actual hosts and replace `REPLACE_WITH_UNIQUE_ID` with a unique value. Use a private, access-controlled broker and apply its connection settings. The speed settings are required by v0.1.0 configuration validation but do not enable motion without an `mqtt_to_ros` mapping.
 
 ### 5. Start the bridge and observe MQTT
 
@@ -233,15 +240,15 @@ java -jar turtle4j-mqtt-bridge-0.1.0.jar --config robot-readonly.json
 In another terminal with Mosquitto clients installed, subscribe to the matching MQTT topic:
 
 ```bash
-mosquitto_sub -h broker.hivemq.com -p 1883 \
-  -t "turtle4j/robot/REPLACE_WITH_UNIQUE_ID/odom" -v
+mosquitto_sub -h MQTT_BROKER_HOST -p 1883 \
+  -t "turtle4j/robot/REPLACE_WITH_UNIQUE_ID/battery_state" -v
 ```
 
-If the robot's topic has a namespace, the MQTT suffix follows the discovered ROS 2 topic name without its initial slash. Successful output would demonstrate **read-only forwarding** of that topic, not general TurtleBot 4 support. If no messages arrive, verify the ROS topic name and type, rosbridge reachability, and the bridge's console output. Stop with **Ctrl+C**.
+If the robot's topic has a namespace, the MQTT suffix follows the discovered ROS 2 topic name without its initial slash. Check for repeated battery messages. Then test each additional sensor individually using its discovered name and type, keeping `ros_to_mqtt`. If no messages arrive, verify the ROS topic name and type, rosbridge reachability, and the bridge's console output. Stop with **Ctrl+C**.
 
 ### 6. Report the results
 
-Record the Raspberry Pi architecture and operating system, Java version, discovered ROS topic and type, rosbridge host location (without credentials), bridge startup messages, and whether MQTT telemetry arrived. Do not attempt motion control; report errors rather than bypassing the restrictions.
+Record the Raspberry Pi architecture and operating system, Java version, discovered ROS topic and type, rosbridge host location (without credentials), bridge startup messages, whether MQTT telemetry arrived, and one complete MQTT payload per topic. Compare fields and arrays with the ROS 2 reference. Record ROS 2 and MQTT message rates and counts over the same time window. Use matching timestamps where available to identify gaps or suspected loss, and record any limits on the loss estimate. Do not attempt motion control; report errors rather than bypassing the restrictions.
 
 ## Troubleshooting and safety
 
