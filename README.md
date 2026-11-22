@@ -1,5 +1,10 @@
 # Getting Started
 
+[![Java 21+](https://img.shields.io/badge/Java-21%2B-blue)](https://adoptium.net/temurin/releases/?version=21)
+[![API version 1.1.0](https://img.shields.io/badge/API-1.1.0-green)](https://central.sonatype.com/artifact/com.javiergs/turtle4j/1.1.0)
+[![Java CI](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml/badge.svg?branch=main)](https://github.com/javiergs/turtle4j-getting-started/actions/workflows/java-ci.yml)
+[![Javadoc](https://img.shields.io/badge/docs-Javadoc-blue)](https://javiergs.github.io/turtle4j-getting-started/javadoc/1.1.0/)
+
 Turtle4J is a Java 21 library for communicating with ROS 2 systems through a rosbridge WebSocket connection. It supports topic publishing, subscriptions, and runtime discovery of advertised ROS 2 interfaces.
 
 This repository provides four complementary resources: a **Docker-based simulator** for experimenting without physical hardware, an introduction to **ROS 2 fundamentals**, the **turtle4j Java library** for communicating with ROS 2 systems, and **turtle4j-mqtt-bridge** for connecting MQTT applications to ROS 2.
