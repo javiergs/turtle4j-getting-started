@@ -140,10 +140,22 @@ The browser address `http://localhost:6080/vnc.html` opens the Linux desktop. Th
 
 Return to the terminal that started Docker and press **Ctrl+C**. The `--rm` option in the other commands removes the stopped container, but keeps the downloaded or built image.
 
+## Update an existing installation
+
+Stop the currently running simulator, then pull the public image again:
+
+```sh
+docker pull ghcr.io/javiergs/turtlesim-docker-environment:latest
+```
+
+Start a new container using the same commands above. Pulling an update leaves
+an existing container on its original image. The public package can be pulled
+without signing in to GitHub.
+
 ## Troubleshooting
 
 - **Docker command not found:** Install Docker, then reopen your terminal.
-- **Cannot connect to Docker:** Start Docker Desktop and wait for it to finish launching.
+- **Cannot connect to Docker:** Start Docker Desktop and wait for it to finish launching. On Windows, use Linux containers.
 - **Port 6080 or 9090 already in use:** Stop the other application or container using that port.
 - **Browser desktop unavailable:** Check that Docker is running and that the startup terminal remains open.
 - **ROS 2 command does not move the turtle:** Start Turtlesim first, then run the command in a terminal inside the Linux desktop.
