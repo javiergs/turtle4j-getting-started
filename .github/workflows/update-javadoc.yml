@@ -8,15 +8,15 @@ jobs:
   javadoc:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7
         with:
           repository: jgs-lab/api-turtle4j
           ref: main
           token: ${{ secrets.TURTLE4J_SOURCE_TOKEN }}
           persist-credentials: false
           path: _turtle4j-source
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '21'
@@ -48,7 +48,7 @@ jobs:
           mkdir -p docs/javadoc/development
           rsync -a --delete "_turtle4j-source/$DOC_DIR/" docs/javadoc/development/
           rm -rf _turtle4j-source
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "docs: refresh TURTLE4J development Javadoc"

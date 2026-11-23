@@ -13,7 +13,7 @@ jobs:
   release-javadoc:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check immutable release source reference
         shell: bash
         env:
@@ -28,14 +28,14 @@ jobs:
             echo "::error::1.0.0 documentation already exists; frozen releases must not be overwritten."
             exit 1
           fi
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: jgs-lab/api-turtle4j
           ref: ${{ inputs.release_commit }}
           token: ${{ secrets.TURTLE4J_SOURCE_TOKEN }}
           persist-credentials: false
           path: _turtle4j-source
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '21'
@@ -59,7 +59,7 @@ jobs:
           mkdir -p docs/javadoc/1.0.0
           rsync -a "_turtle4j-source/$DOC_DIR/" docs/javadoc/1.0.0/
           rm -rf _turtle4j-source
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'docs: add frozen TURTLE4J 1.0.0 Javadoc'
